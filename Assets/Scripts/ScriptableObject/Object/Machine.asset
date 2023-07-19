@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127bb986f84980347941cd57d111a0bb, type: 3}
+  m_Name: Machine
+  m_EditorClassIdentifier: 
+  _machineName: A
+  _machineDescription: '-'
+  _machineType: ABC
+  _maxOutputStorage: 10
+  currentStorage: 64.96929
+  originalCurrentStorage: 0
+  machineHeatingValue: 0
+  currentMachinePower: 100
+  machineDurability: 100
+  productionMultiplier: 1
+  originalProductionMultiplier: 1
+  _inputResource: {fileID: 11400000, guid: 8f465baf79bb3ba4f96157232cc28bf5, type: 2}
+  _outputResource: {fileID: 1365698620575316, guid: 20b83b6c7039f5d47beac9ffafe09d6e,
+    type: 3}
