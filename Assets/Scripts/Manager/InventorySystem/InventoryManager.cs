@@ -28,8 +28,8 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            string filePathInStreamingAssets = System.IO.Path.Combine(Application.streamingAssetsPath, filepath);
-            result = System.IO.File.ReadAllText(filePathInStreamingAssets);
+            //string filePathInStreamingAssets = System.IO.Path.Combine(Application.streamingAssetsPath, filepath);
+            result = System.IO.File.ReadAllText(filepath);
         }
 
         Debug.Log("Reading file from: " + filepath);
@@ -82,19 +82,20 @@ public class InventoryManager : MonoBehaviour
 
             ItemsDataBean item;
 
-            item = new ItemsDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemRecipe);
-            /*switch (itemType)
+            //item = new ItemsDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemRecipe);
+            switch (itemType)
             {
-                case ItemType.GameResourceItem:
+                default:
                     item = new ItemsDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemRecipe);
                     break;
-            }*/
-
+            }
+                
 
             Debug.Log("item ItemDataBean created : " + item.itemID + " | " + item.itemName);
 
             allItemList.Add(item);
         }
+
         inventoryModelContainer.SetAllItem(allItemList);
     }
 }
