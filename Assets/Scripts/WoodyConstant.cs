@@ -35,3 +35,33 @@ public enum Host
     Test,
     Live
 }
+
+public enum UsedToType
+{
+    UsedToUser = 0,
+    UsedToFactory = 1,
+    UsedToShop = 2,
+    UsedToGrid = 3,
+    UsedToGenerate = 4,
+    UsedToBeFuel = 5,
+    UsedToSell = 6,
+    UsedToBuy = 7,
+    UsedToSpecialEvent = 8
+}
+public enum ItemType
+{
+    GameResourceItem = 0,
+    /*NanoGameResourceItem = 1,
+    EenrgyItem = 2,
+    SyntheticItem = 3,
+    GenerateRequireItem = 4,
+    ConsumableItem = 5,
+    InFactoryItem = 6,
+    InShopItem = 7,
+    Employee = 8,
+    UpgradeItem = 9,
+    Machine = 10,
+    Storage = 11,
+    Robot = 12,
+    MiniGame = 13*/
+}

@@ -1,0 +1,51 @@
+Game Reousrce Data,,,,,,,,,,,,,,,,,,,
+Item ID,itemName,Type,Genre,,item key,UsedTo,ItemType,itemRarity (Value),itemRarity (Display),item Margin Price(NVC),,item Recipe (General Resource Type),,,,,,itemSeasonal Popularity,item Description
+1,Electric Power,Power Component,Energy,,electric_power,5,2,1,I,0,,null,0,null,0,null,0,null,Main Component used to drive Machine and all of electric equipment.
+2,Solar Power,Power Component,Energy,,solar_power,5,2,3,III,0,,null,0,null,0,null,0,null,A type of Power that will convert sunlight to Electric Power.
+3,Wind Power,Power Component,Energy,,wind_power,5,2,3,III,0,,null,0,null,0,null,0,null,A type of Power that will convert Wind blowing to Electric Power.
+4,Electric Cells,Power Component,Power Cells,,electric_cells,5,2,1,I,0,,null,0,null,0,null,0,null,blah blah
+5,Bio Power Cells,Power Component,Power Cells,,bio_power_cells,5,2,3,III,0,,null,0,null,0,null,0,null,blah blah
+6,Thermoelectric Nano Generators (TNG-300),Nano Component,Nano Materials,Energy harvester,thermoelectric_nano_generators_tng-300,6,1,4,IV,1250,,null,0,null,0,null,0,null,blah blah
+7,Radioactive Decay Harvesters (RDH-300),Nano Component,Nano Materials,Energy harvester,radioactive_decay_harvesters_rdh-300,6,1,4,IV,1500,,null,0,null,0,null,0,null,blah blah
+8,Solar Nanocells(SNc-300),Nano Component,Nano Materials,Energy harvester,solar_nanocellssnc-300,6,1,4,IV,1250,,null,0,null,0,null,0,null,blah blah
+,Programmable Energy Redistribution (PER-350),Nano Component,Nano Materials,Programmable,programmable_energy_redistribution_per-350,6,1,3,III,760,,null,0,null,0,null,0,null,blah blah
+10,Programmable Architectural Materials(PAM-350),Nano Component,Nano Materials,Programmable,programmable_architectural_materialspam-350,6,1,4,IV,1750,,null,0,null,0,null,0,null,blah blah
+11,Programmable Nano Robotics(PNR-350),Nano Component,Nano Materials,Programmable,programmable_nano_roboticspnr-350,6,1,4,IV,1750,,null,0,null,0,null,0,null,blah blah
+12,Active Texture Manipulation,Nano Component,Nano Materials,Nanocamouflage,active_texture_manipulation,6,1,5,V,2500,,null,0,null,0,null,0,null,blah blah
+13,Adaptive Color Shifting,Nano Component,Nano Materials,Nanocamouflage,adaptive_color_shifting,6,1,5,V,2500,,null,0,null,0,null,0,null,blah blah
+14,Standard Core Processor(SCP-5000),Tech Component,Processors,,standard_core_processorscp-5000,6,0,1,I,48,,Metal,6,Wire,9,Screw,3,null,blah blah
+15,HyperThread X-8 (HTX-8),Tech Component,Processors,,hyperthread_x-8_htx-8,6,0,1,I,70,,Metal,8,Wire,15,Screw,5,null,blah blah
+16,HyperCoreX Processor (HCX-3000),Tech Component,Processors,,hypercorex_processor_hcx-3000,6,0,2,II,145,,Metal,15,Wire,30,Copper,8,null,blah blah
+17,NanoCore Chip (NCC-10),Tech Component,Processors,,nanocore_chip_ncc-10,6,0,2,II,190,,Metal,18,Wire,50,Copper,10,null,blah blah
+18,PowerCore X (PCX-900),Tech Component,Processors,,powercore_x_pcx-900,6,0,3,III,340,,Metal,30,Wire,80,Copper,22,null,blah blah
+19,CoreLogic Security Processor (CSP-200),Tech Component,Processors,Programmable,corelogic_security_processor_csp-200,6,0,3,III,410,,Metal,35,Wire,85,Copper,30,null,blah blah
+20,Energy Harvesting Processor (EHP-100),Tech Component,Processors,Energy harvester,energy_harvesting_processor_ehp-100,6,0,3,III,400,,null,0,Wire,150,Copper,50,null,blah blah
+21,Radioactive Decay Harvesters Processor (RDHP-100),Tech Component,Processors,Energy harvester,radioactive_decay_harvesters_processor_rdhp-100,6,0,3,III,425,,Screw,50,Wire,125,Copper,30,null,blah blah
+22,Cybernetic Enhancement Module (CEM-100),Tech Component,Module,,cybernetic_enhancement_module_cem-100,6,0,2,II,250,,Screw,25,Wire,100,Copper,15,null,blah blah
+23,Stealth Module (STM-100),Tech Component,Module,Nanocamouflage,stealth_module_stm-100,6,0,2,II,300,,Screw,25,Wire,125,Copper,20,null,blah blah
+24,Medical Nanobot Module (MNM-600),Tech Component,Module,Programmable,medical_nanobot_module_mnm-600,8,0,3,V,90,,Screw,10,Wire,10,Copper,10,null,Speical Event Appear if generate this resource
+25,Drone Control Module (DCM-500),Tech Component,Module,Programmable,drone_control_module_dcm-500,8,0,3,V,90,,Screw,10,Wire,10,Copper,10,null,Speical Event Appear if generate this resource
+26,Energy Shield Module (ESM-700),Tech Component,Module,,energy_shield_module_esm-700,6,0,4,IV,550,,Screw,50,Wire,150,Copper,50,null,blah blah
+27,Environmental Adaptation Module (EAM-800),Tech Component,Module,Nanocamouflage,environmental_adaptation_module_eam-800,6,0,4,IV,825,,Metal,75,Concrete,100,Copper,30,null,blah blah
+28,Hacking Interface Module (HIM-100),Tech Component,Module,Programmable,hacking_interface_module_him-100,6,0,4,IV,925,,Metal,50,Concrete,100,Copper,75,null,blah blah
+29,Thermal Sensor (TS-300),Tech Component,Sensor,,thermal_sensor_ts-300,6,0,2,II,215,,Metal,15,Concrete,30,Copper,10,null,blah blah
+30,Bioscanner Sensor (BS-300),Tech Component,Sensor,,bioscanner_sensor_bs-300,6,0,3,III,225,,Metal,10,Concrete,50,Copper,5,null,blah blah
+31,Environmental Analyzer Sensor (EAS-300),Tech Component,Sensor,,environmental_analyzer_sensor_eas-300,6,0,4,IV,700,,Metal,30,Concrete,100,Copper,50,null,blah blah
+32,Cybernetic Interface Sensor (CIS-300),Tech Component,Sensor,Programmable,cybernetic_interface_sensor_cis-300,6,0,2,II,340,,Screw,30,Wire,50,Copper,40,null,blah blah
+33,Ultrasonic Sensor (US-300),Tech Component,Sensor,,ultrasonic_sensor_us-300,6,0,1,I,105,,Screw,10,Wire,50,Metal,5,null,blah blah
+34,Force Detection Sensor (FDS-300),Tech Component,Sensor,,force_detection_sensor_fds-300,6,0,1,I,125,,Screw,15,Wire,30,Metal,10,null,blah blah
+35,Standard Cirucuit Board,Tech Component,Circuit board,,standard_cirucuit_board,6,0,1,I,145,,Screw,20,Wire,60,Metal,5,null,blah blah
+36,Advanced Cirucuit Board,Tech Component,Circuit board,,advanced_cirucuit_board,6,0,3,III,530,,Screw,60,Wire,150,Metal,40,null,blah blah
+37,Circuit Protection Devices,Tech Component,Circuit Protection,,circuit_protection_devices,6,0,1,I,70,,Screw,5,Wire,30,Metal,5,null,blah blah
+38,Real-Time Analytics Sensor (RTAS-2000),Tech Component,Advanced Sensor,Programmable,real-time_analytics_sensor_rtas-2000,6,0,5,V,1200,,Metal,100,Wire,200,Copper,100,null,blah blah
+39,Thought and Emotion Detection Sensor (TEDS-3000),Tech Component,Advanced Sensor,Programmable,thought_and_emotion_detection_sensor_teds-3000,6,0,5,V,1125,,Metal,75,Wire,300,Copper,90,null,blah blah
+40,Quantum Neural Processor (QNP-9000),Tech Component,Quantum Processor,Programmable,quantum_neural_processor_qnp-9000,6,0,5,V,2500,,Metal,250,Wire,800,Screw,150,null,blah blah
+41,Syntheticskin,Synthetic,Synthetic,,syntheticskin,8,3,3,III,220,,null,null,null,null,null,null,null,Can’t Generate From Machine
+42,Nano-fiber Fabric,Synthetic,Synthetic,,nano-fiber_fabric,8,3,3,III,450,,null,null,null,null,null,null,null,Can’t Generate From Machine
+43,Synthetic Muscles,Synthetic,Synthetic,,synthetic_muscles,8,3,4,IV,750,,null,null,null,null,null,null,null,Can’t Generate From Machine
+44,Synthetic Biofuel,Synthetic,Synthetic,,synthetic_biofuel,8,0,5,V,1890,,null,null,null,null,null,null,null,Can’t Generate From Machine
+45,Metal,General,,,metal,4,4,1,I,5,,null,null,null,null,null,null,null,Input Resource
+46,Concrete,General,,,concrete,4,4,1,I,3,,null,null,null,null,null,null,null,Input Resource
+47,Screw,General,,,screw,4,4,1,I,3,,null,null,null,null,null,null,null,Input Resource
+48,Wire,General,,,wire,4,4,1,I,1,,null,null,null,null,null,null,null,Input Resource
+49,Copper,General,,,copper,4,4,1,I,5,,null,null,null,null,null,null,null,Input Resource
