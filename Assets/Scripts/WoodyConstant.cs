@@ -51,7 +51,7 @@ public enum UsedToType
 public enum ItemType
 {
     GameResourceItem = 0,
-    /*NanoGameResourceItem = 1,
+    NanoGameResourceItem = 1,
     EenrgyItem = 2,
     SyntheticItem = 3,
     GenerateRequireItem = 4,
@@ -63,5 +63,13 @@ public enum ItemType
     Machine = 10,
     Storage = 11,
     Robot = 12,
-    MiniGame = 13*/
+    PowerDevice = 13,
+    MiniGame = 14,
+    ResearchAndDevelopDevice = 15,
+    EnvironmentalControlDevice = 16,
+}
+
+public enum GameSeasonal
+{
+
 }

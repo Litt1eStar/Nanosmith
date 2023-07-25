@@ -42,13 +42,13 @@ public class InventoryManager : MonoBehaviour
     private void ReadItemDataFromCSV(string result)
     {
         string[] records = result.Split('\n');
-        int counter = 1;
+        int counter = 0;
         List<ItemsDataBean> allItemList = new List<ItemsDataBean>();
 
         foreach (string record in records)
         {
             counter++;
-            if(counter == 2)
+            if (counter == 1 && counter == 2)
             {
                 continue;
             }
@@ -56,14 +56,14 @@ public class InventoryManager : MonoBehaviour
             string[] fields = record.Split(",");
 
             int itemID = int.Parse(fields[0]);
-            string itemName = fields[1];  
-            
+            string itemName = fields[1];
+
             string[] itemGenre = new string[3];
             itemGenre[0] = fields[2];
             itemGenre[1] = fields[3];
             itemGenre[2] = fields[4];
 
-            string itemKey= fields[5];          
+            string itemKey = fields[5];
 
             UsedToType usedToType = (UsedToType)int.Parse(fields[6]);
             ItemType itemType = (ItemType)int.Parse((string)fields[7]);
@@ -72,8 +72,8 @@ public class InventoryManager : MonoBehaviour
             string itemRarityDisplay = fields[9];
 
             int itemMarginNVC = int.Parse(fields[10]);
-            Dictionary<string, int> itemRecipe = new Dictionary<string, int>() 
-            {   
+            Dictionary<string, int> itemRecipe = new Dictionary<string, int>()
+            {
                 {fields[12],int.Parse(fields[13])}, {fields[14],int.Parse(fields[15])}, {fields[16],int.Parse(fields[17])}
             };
 
@@ -89,7 +89,7 @@ public class InventoryManager : MonoBehaviour
                     item = new ItemsDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemRecipe);
                     break;
             }
-                
+
 
             Debug.Log("item ItemDataBean created : " + item.itemID + " | " + item.itemName);
 
