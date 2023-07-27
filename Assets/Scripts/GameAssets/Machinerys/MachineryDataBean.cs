@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class MachineryDataBean 
 {
-    public string machineName;
-    public string machineDescription;
+    public string itemID; // 0
+    public string machineName; // 1
+    public string machineType; // 2
+    public string itemKey; // 3
 
-    public float maxOutputStorage; 
-    public float currentStorage;
+    public UsedToType usedToType; // 4
+    public ItemType itemType; // 5
 
-    public int maxMachinePower;
-    public int currentMachinePower;
+    public int machinePriceNVC; // 6
+    public string machineDescription; // 7
+    public int storageSize; // 8
 
-    public int machineHeatingValue;
-    public float maxMachineDurability;
-    public float currentMachineDurability;
-
-    public float productionMultiplier;
-    public float originalProductionMultiplier;
-
-    public ItemsDataBean inputResource;
-    public ItemsDataBean outputResource;
-
-    public UsedToType usedToType;
-    public ItemType itemType;
-
-    public MachineryDataBean(string machineName, string machineDescription, float maxOutputStorage, float currentStorage, int maxMachinePower, int currentMachinePower, int machineHeatingValue, float maxMachineDurability, float currentMachineDurability, float productionMultiplier, float originalProductionMultiplier, UsedToType usedToType, ItemType itemType, ItemsDataBean inputResource, ItemsDataBean outputResource)
+    public MachineryDataBean(string itemID, string machineName, string machineType, string itemKey, UsedToType usedToType, ItemType itemType, int machinePriceNVC, string machineDescription, int storageSize)
     {
+        this.itemID = itemID;
         this.machineName = machineName;
-        this.machineDescription = machineDescription;
-        this.maxOutputStorage = maxOutputStorage;
-        this.currentStorage = currentStorage;
-        this.maxMachinePower = maxMachinePower;
-        this.currentMachinePower = currentMachinePower;
-        this.machineHeatingValue = machineHeatingValue;
-        this.maxMachineDurability = maxMachineDurability;
-        this.currentMachineDurability = currentMachineDurability; 
-        this.productionMultiplier = productionMultiplier;
-        this.originalProductionMultiplier = originalProductionMultiplier;
+        this.machineType = machineType;
+        this.itemKey = itemKey;
         this.usedToType = usedToType;
         this.itemType = itemType;
-        this.inputResource = inputResource;
-        this.outputResource = outputResource;
+        this.machinePriceNVC = machinePriceNVC;
+        this.machineDescription = machineDescription;
+        this.storageSize = storageSize;
     }
+
+    //public int machineProductionMultiplier; // 8
+    //public int machineDeviceProperty; // Resource Generator => Power Consumption/hr , power generator => Power generating/hr , battery =>storage size , Storage => storage size
+    //public float machineDurability;
+
+
+    //public float maxOutputStorage; 
+    //public float currentStorage;
+
+    //public int machineHeatingValue;
+    //public float maxMachineDurability;
+    //public float currentMachineDurability;   
+
+    //public ItemsDataBean inputResource;
+    //public ItemsDataBean outputResource;
+
 }

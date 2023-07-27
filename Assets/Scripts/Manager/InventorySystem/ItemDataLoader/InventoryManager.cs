@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void InitInventoryData()
     {
-        StartCoroutine(LoadItemDataStreamingAsset("CSV_Data/Nanosmith_GameItemData_23072023.csv"));
+        StartCoroutine(LoadItemDataStreamingAsset("CSV_Data/Nanosmith_ResourceCSVData_27072023.csv"));
     }
 
     IEnumerator LoadItemDataStreamingAsset(string fileName)
