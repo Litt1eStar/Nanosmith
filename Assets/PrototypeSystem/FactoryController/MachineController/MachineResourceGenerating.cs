@@ -23,13 +23,6 @@ public class MachineResourceGenerating : MonoBehaviour
         {
             GenerateResource();
         }
-        else if (machineBaseClass._inputResource == null && robotBaseClass.hasTakenData == true)
-        {
-            print("[Input Resource is Empty] MachineStorage :: " + Mathf.FloorToInt(machineBaseClass.currentStorage));
-            print("Player Need to put Resource at Input Resource");
-            return;
-        }
-
 
         if (machineBaseClass.isTakenData)
         {

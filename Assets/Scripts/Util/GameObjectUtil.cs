@@ -14,8 +14,8 @@ public class GameObjectUtil : MonoSingleton<GameObjectUtil>
         GameObject go = GameObject.Instantiate(prefab) as GameObject;
         if (go != null && parent != null)
         {
-            Transform t = go.transform;
-            t.SetParent(parent.transform);
+            Transform t = go.transform; // Set gameObject Transform
+            t.SetParent(parent.transform); // Set gameObjectTransform as child of ParentTransform
             t.localPosition = prefab.transform.localPosition;
             t.localRotation = prefab.transform.localRotation;
             t.localScale = prefab.transform.localScale;

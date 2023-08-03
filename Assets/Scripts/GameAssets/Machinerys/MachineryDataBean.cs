@@ -29,6 +29,7 @@ public class MachineryDataBean
         this.storageSize = storageSize;
     }
 
+
     //public int machineProductionMultiplier; // 8
     //public int machineDeviceProperty; // Resource Generator => Power Consumption/hr , power generator => Power generating/hr , battery =>storage size , Storage => storage size
     //public float machineDurability;

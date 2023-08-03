@@ -1,0 +1,72 @@
+
+Base Shop System
+- Create Shop System that Player can open by click on button or use keybind.
+- In shop UI there will be Shop Panel[show item in shop] , Player Inventory[show player inventory].
+- Player will buy item in Shop Panel then item will add to Player Inventory.
+- In shop Panel will generate item based on shop type[Machinery, Game Resource].
+- Use Grid Layout in Shop Panel and Player Inventory to make Ui more dynamic.
+
+******
+
+In-shop UI Component
+- Shop Item Panel
+	- Grid Layout
+	- Item Prefab List
+		- Item Icon
+		- Item Name
+		- Item Price
+		- Item Selection Highlight
+	- Open Description Button
+	- Description Panel
+		- Item Status Panel
+		- Item Crafting Panel
+		- Item Description Panel
+		- Desciption Dialoughe
+		- Close Description Panel Button
+
+- Player Inventory Panel
+	- Grid Layout
+	- Item Prefab List
+		- Item Icon
+		- Item Name
+		- Item Price
+		- Item Selection Highlight
+	- Open Description List
+	- Description Panel
+		- Item Status Panel
+		- Item Crafting Panel
+		- Item Description Panel
+		- Desciption Dialoughe
+		- Close Description Panel Button
+
+- Buy Button
+- Sell Button
+- Close Shop Panel Button
+
+*******
+
+System Class Breakdown
+- ShopController
+	- Control State of Shop Panel[TurnON/TurnOFF].
+	- Control delegate Method that used for check selected object.
+	- Contain Method to Open Shop.
+
+- ShopItemDescriptionController
+	- Contain Method used to OpenDescriptionPanel.
+	- Contain Method used to CloseDescriptionPanel.
+	- Control State of Description Panel[TurnON/TurnOFF].
+	- Change data in description panel based on selected object.
+
+- ItemObjectController
+	- Contain Method init that used for set the propertied of Object[Name, Price, Icon].
+	- Contain Method that will Register Method to Shop Controller.
+	- Contain Method Used to Change Item Selection Highlight to active if player is selected the object.
+	- Contain Method Used to send data of selected object to delegate Method at ShopController.
+	- Contain Method Used to send data of selected object to open description Panel at ShopController.
+
+- SpriteSheetUtil
+	- Contain Method named Init() , this Method used to set spriteData by using data from folder named "Sprites"
+	- Contain Method named GetSpriteByName(string name) , this method used to set use of sprite by checking
+	key of spriteData that is same as string value of method or not? if yes => spriteData[name] will apply to use of sprite.
+	this method return use sprite value.
+	

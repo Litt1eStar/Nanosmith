@@ -20,15 +20,6 @@ public class MachineDataBean : MachineryDataBean
                                    storageSize
                                    )
     {
-        this.itemID = itemID;
-        this.machineName = machineName;
-        this.machineType = machineType;
-        this.itemKey = itemKey;
-        this.usedToType = usedToType;
-        this.itemType = itemType;
-        this.machinePriceNVC = machinePriceNVC;
-        this.machineDescription = machineDescription;
-        this.storageSize = storageSize;
         this.machineProductionMultiplier = machineProductionMultiplier;
         this.machinePowerConsumptionPerHour = machinePowerConsumptionPerHour;
         this.machineDurability = machineDurability;

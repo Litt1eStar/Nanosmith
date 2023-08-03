@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MachineModelContainer : MonoBehaviour
@@ -9,6 +10,8 @@ public class MachineModelContainer : MonoBehaviour
 
     public void SetAllItem(List<MachineryDataBean> gameResourceItem)
     {
+
+        //Debug.Log("++++++++++++++++++++++++++++++++++++++ SetAllItem gameResourceItem :: " + gameResourceItem.Count);
         gameResourceItem.ForEach(item => {
             if (gameResourceItemDict.ContainsKey(item.itemKey))
             {
@@ -43,6 +46,12 @@ public class MachineModelContainer : MonoBehaviour
                     break;
             }
         });
+
+        //Debug.Log("++++++++++++++++++++++++++++++++++++++ SetAllItem gameResourceItemDict :: " + gameResourceItemDict.Count);
     }
 
+    public List<MachineryDataBean> GetAllItems()
+    {
+        return gameResourceItemDict.Values.ToList();
+    }
 }

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryModelContainer : MonoBehaviour
 {
     public Dictionary<string, ItemsDataBean> gameResourceItemDict = new Dictionary<string, ItemsDataBean>();
-    public Dictionary<string, ConsumableIteamDataBean> gameConsumableItemDict = new Dictionary<string, ConsumableIteamDataBean>();
+    //public Dictionary<string, ConsumableIteamDataBean> gameConsumableItemDict = new Dictionary<string, ConsumableIteamDataBean>();
 
     public void SetAllItem(List<ItemsDataBean> gameResourceItem)
     {
@@ -24,25 +25,63 @@ public class InventoryModelContainer : MonoBehaviour
                 case ItemType.GameResourceItem:
                     if (gameResourceItemDict.ContainsKey(item.itemKey))
                     {
-                        gameResourceItemDict[item.itemKey] = (ItemsDataBean)item;
+                        gameResourceItemDict[item.itemKey] = (GameResourceItemDataBean)item;
                     }
                     else
                     {
-                        gameResourceItemDict.Add(item.itemKey, (ItemsDataBean)item);
+                        gameResourceItemDict.Add(item.itemKey, (GameResourceItemDataBean)item);
                     }
                     break;
-                /*case ItemType.ConsumableItem:
+
+                case ItemType.NanoGameResourceItem:
                     if (gameResourceItemDict.ContainsKey(item.itemKey))
                     {
-                        gameResourceItemDict[item.itemKey] = (ConsumableIteamDataBean)item;
+                        gameResourceItemDict[item.itemKey] = (SpecialEventResourceItemDataBean)item;
                     }
                     else
                     {
-                        gameResourceItemDict.Add(item.itemKey, (ConsumableIteamDataBean)item);
+                        gameResourceItemDict.Add(item.itemKey, (SpecialEventResourceItemDataBean)item);
                     }
-                    break;*/
+                    break;
+
+                case ItemType.EenrgyItem:
+                    if (gameResourceItemDict.ContainsKey(item.itemKey))
+                    {
+                        gameResourceItemDict[item.itemKey] = (SpecialEventResourceItemDataBean)item;
+                    }
+                    else
+                    {
+                        gameResourceItemDict.Add(item.itemKey, (SpecialEventResourceItemDataBean)item);
+                    }
+                    break;
+
+                case ItemType.SyntheticItem:
+                    if (gameResourceItemDict.ContainsKey(item.itemKey))
+                    {
+                        gameResourceItemDict[item.itemKey] = (SpecialEventResourceItemDataBean)item;
+                    }
+                    else
+                    {
+                        gameResourceItemDict.Add(item.itemKey, (SpecialEventResourceItemDataBean)item);
+                    }
+                    break;
+
+                case ItemType.GenerateRequireItem:
+                    if (gameResourceItemDict.ContainsKey(item.itemKey))
+                    {
+                        gameResourceItemDict[item.itemKey] = (GenerateRequiredItemDataBean)item;
+                    }
+                    else
+                    {
+                        gameResourceItemDict.Add(item.itemKey, (GenerateRequiredItemDataBean)item);
+                    }
+                    break;
             }
         });
     }
 
+    public List<ItemsDataBean> GetAllItems()
+    {
+        return gameResourceItemDict.Values.ToList();
+    }
 }

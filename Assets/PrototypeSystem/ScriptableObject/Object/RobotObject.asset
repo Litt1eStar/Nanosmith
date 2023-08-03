@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: RobotObject
   m_EditorClassIdentifier: 
   robotMaxStorage: 0
-  currentStorage: 10.003766
+  currentStorage: 0
   robotMaxPower: 0
   robotCurrentPower: 0
   robotSpeed: 0
   robotBaseStanding: {fileID: 0}
   robotDestinationStanding: {fileID: 0}
-  hasTakenData: 1
+  hasTakenData: 0

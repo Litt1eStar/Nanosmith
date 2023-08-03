@@ -8,6 +8,8 @@ public class Main : MainBase
     public static GameplayManager GameplayManager { get; private set; }
     public static InventoryManager InventoryManager { get; private set; }
 
+    public static MachineManager MachineManager { get; private set; }
+
 
     [RuntimeInitializeOnLoadMethod]
 
@@ -21,5 +23,6 @@ public class Main : MainBase
     {
         GameplayManager = GetManagerComponentFromChild(GameplayManager);
         InventoryManager = GetManagerComponentFromChild(InventoryManager);
+        MachineManager = GetManagerComponentFromChild(MachineManager);
     }
 }

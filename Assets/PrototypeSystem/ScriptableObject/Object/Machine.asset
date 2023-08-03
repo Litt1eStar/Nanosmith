@@ -16,7 +16,7 @@ MonoBehaviour:
   _machineDescription: '-'
   _machineType: ABC
   _maxOutputStorage: 10
-  currentStorage: 0
+  currentStorage: 500
   originalCurrentStorage: 0
   machineHeatingValue: 0
   currentMachinePower: 100

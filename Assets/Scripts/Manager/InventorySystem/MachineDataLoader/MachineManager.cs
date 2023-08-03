@@ -11,6 +11,12 @@ public class MachineManager : MonoBehaviour
         InitInventoryData();
     }
 
+    public List<MachineryDataBean> GetAllItemData()
+    {
+        return machineModelContainer.GetAllItems();
+    }
+
+
     public void InitInventoryData()
     {
         StartCoroutine(LoadItemDataStreamingAsset("CSV_Data/Nanosmith_MachineryCSVData_27072023.csv"));
@@ -43,17 +49,10 @@ public class MachineManager : MonoBehaviour
     private void ReadItemDataFromCSV(string result)
     {
         string[] records = result.Split('\n');
-        int counter = 0;
         List<MachineryDataBean> allItemList = new List<MachineryDataBean>();
 
         foreach (string record in records)
         {
-            counter++;
-            if (counter == 1 && counter == 2)
-            {
-                continue;
-            }
-
             string[] fields = record.Split(",");
 
             string itemID = fields[0];
@@ -84,7 +83,7 @@ public class MachineManager : MonoBehaviour
                     item = new MachineryDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize);
                     break;
             }
-            Debug.Log("item ItemDataBean created : " + item.itemID + " | " + item.machineName);
+            Debug.Log("item MachineryDataBean created : " + item.itemID + " | " + item.machineName + " | " + item.itemType + " | " + item.storageSize + " | item Price :: " + item.machinePriceNVC);
             allItemList.Add(item);
         }
         machineModelContainer.SetAllItem(allItemList);
