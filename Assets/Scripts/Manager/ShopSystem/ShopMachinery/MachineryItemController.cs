@@ -14,13 +14,15 @@ public class MachineryItemController : MonoBehaviour
 
     private MachineryDataBean itemData;
     private ShopMachineryController shopController;
+
+    public string machinePriceFormat;
     public void Init(MachineryDataBean myData)
     {
         itemData = myData;
         if (itemData != null)
         {
             itemName.text = myData.machineName;
-            itemPrice.text = myData.machinePriceNVC.ToString();
+            itemPrice.text = FormatPrice(myData.machinePriceNVC) + " NVC$";
             itemIcon.sprite = SpriteSheetUtil.Instance.GetSpriteByName(itemData.itemKey + "_icon");
             selection.SetActive(false);
         }
@@ -29,7 +31,13 @@ public class MachineryItemController : MonoBehaviour
     public void RegisterShopGeneratedController(ShopMachineryController shopCrtl)
     {
         shopController = shopCrtl;
+        //RegisterSelectDelegate(shopController.selectShopItemsObject);
         shopCrtl.selectShopItemsObject += SelectedObject;
+    }
+
+    public void RegisterSelectDelegate(ShopMachineryController.SelectShopItemsObject delegateMethods)
+    {
+        delegateMethods += SelectedObject;
     }
 
     public void SelectedObject(MachineryDataBean machineryDataBean)
@@ -44,15 +52,20 @@ public class MachineryItemController : MonoBehaviour
         }
     }
 
-
-
     public void OnClickSelectedObject()
     {
-        shopController.selectShopItemsObject(itemData);
+        shopController.OnClickSelectedObject(itemData);
     }
 
     public void OnClickSeeMoreInformation()
     {
         shopController.OnclickSeeMoreInformation(itemData);
     }
+
+    private string FormatPrice(int price)
+    {
+        return price.ToString("N0");
+    }
+
+
 }

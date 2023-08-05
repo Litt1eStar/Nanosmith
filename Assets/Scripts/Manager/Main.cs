@@ -9,6 +9,7 @@ public class Main : MainBase
     public static InventoryManager InventoryManager { get; private set; }
 
     public static MachineManager MachineManager { get; private set; }
+    public static PlayerManager PlayerManager { get; private set; }
 
 
     [RuntimeInitializeOnLoadMethod]

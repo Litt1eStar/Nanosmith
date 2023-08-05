@@ -10,11 +10,16 @@ public class ShopMachineryController : MonoBehaviour
     public GameObject shopItemGridLayout;
     public ShopMachineryDescriptionController shopMachineryDescriptionController;
 
+    public ShopCartController shopCart_Controller;
+
     public delegate void SelectShopItemsObject(MachineryDataBean machineryData);
     public SelectShopItemsObject selectShopItemsObject;
 
     private MachineryDataBean currentData;
     public int openCounter = 0;
+
+    public int playerWallet = 1000000000;
+
     private void Awake()
     {
         SpriteSheetUtil.Instance.Init();
@@ -41,7 +46,8 @@ public class ShopMachineryController : MonoBehaviour
         currentData = itemsDataBean;
         selectShopItemsObject?.Invoke(currentData);
 
-        Debug.Log("Selected Item ID : " + currentData.itemID + " | name : " + currentData.machineName);
+        //Debug.Log("OnClickSelectedObject[ShopMachineryController] :: " + currentData);
+        //Debug.Log("Selected Item ID : " + currentData.itemID + " | name : " + currentData.machineName);
     }
 
     public void OnclickSeeMoreInformation(MachineryDataBean itemsDataBean)
@@ -52,25 +58,30 @@ public class ShopMachineryController : MonoBehaviour
 
     }
 
+    public void ClearShop()
+    {
+        GameObjectUtil.Instance.DestroyAllChildren(shopItemGridLayout);
+    }
+
     public void CloseShopPanel()
     {
         ShopPanel.SetActive(false);
+        shopCart_Controller.ClearCart();
         Debug.Log("CloseShopPanel is WORKING :: ShopPanel Name ::" + ShopPanel.name);
+        ClearShop();
+        selectShopItemsObject = null;
     }
+
     public void OpenShop()
     {
         ShopPanel.SetActive(true);
     }
 
+
     public void AddItemToPanel()
     {
         List<MachineryDataBean> allItems = Main.MachineManager.GetAllItemData();
         Debug.Log("Machine allItems :: " + allItems.Count);
-
-        /*for (int i = 0; i < allItems.Count; i++)
-        {
-            Debug.Log("Machine Member Index[" + i + "] | " + allItems[i].machineName);
-        }*/
 
         allItems.ForEach(data =>
         {
@@ -104,7 +115,21 @@ public class ShopMachineryController : MonoBehaviour
                     break;
             }
         });
-
-
     }
+
+    public void AddToCart()
+    {
+        Debug.Log("Current Data[ShopController] :: " + currentData);
+        shopCart_Controller.AddToCart(currentData, shopCart_Controller);
+    }
+
+    public void CheckOutItemInCart()
+    {
+        /*if (shopCart_Controller.totalPrice < playerWallet)
+        {
+            Main.PlayerManager.AddPlayerInventory(shopCart_Controller.CheckoutItemInCart());
+        }*/
+        shopCart_Controller.CheckoutItemInCart();
+    }
+
 }

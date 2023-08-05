@@ -11,14 +11,33 @@ public class MouseLook : MonoBehaviour
 
     float xRotation = 0f;
     public Vector3 mouseMovement;
+
+    private bool isMouseLocked;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            isMouseLocked = !isMouseLocked;
+            if (isMouseLocked)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+
+            }
+        }
         if (playerInteractUI.FreezePlayerMovementByUIDisplaying())
         {
             xRotation -= 0;

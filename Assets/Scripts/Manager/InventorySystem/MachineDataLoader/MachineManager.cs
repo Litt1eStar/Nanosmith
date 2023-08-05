@@ -79,6 +79,15 @@ public class MachineManager : MonoBehaviour
                 case ItemType.PowerDevice:
                     item = new PowerDeviceDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize, powerGeneratePerHour);
                     break;
+                case ItemType.Storage:
+                    item = new StorageDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize);
+                    break;
+                case ItemType.ResearchAndDevelopDevice:
+                    item = new StorageDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize);
+                    break;
+                case ItemType.EnvironmentalControlDevice:
+                    item = new StorageDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize);
+                    break;
                 default:
                     item = new MachineryDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize);
                     break;

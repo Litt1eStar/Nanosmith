@@ -12,8 +12,6 @@ public class ShopMachineryDescriptionController : MonoBehaviour
     public GameObject inItemDescriptionPanel;
 
     public Image itemIcon;
-    public TextMeshProUGUI mainItemName;
-    public TextMeshProUGUI mainItemPrice;
 
     public TextMeshProUGUI itemNameUI;
     public TextMeshProUGUI itemType;
@@ -35,23 +33,43 @@ public class ShopMachineryDescriptionController : MonoBehaviour
             {
                 case ItemType.Machine:
                     MachineDataBean machineObj = (MachineDataBean)targetData;
-                    mainItemName.text = machineObj.machineName;
-                    mainItemPrice.text = "NCV$ : " + machineObj.machinePriceNVC.ToString();
                     itemNameUI.text = "Item Name : " + machineObj.machineName;
                     itemType.text = "Item Genre : " + machineObj.machineType;
                     storageSize.text = "Storage Size : " + machineObj.storageSize.ToString();
-                    itemPrice.text = "Item Price : " + machineObj.machinePriceNVC.ToString() + " NVC$";
+                    itemPrice.text = "Item Price : " + FormatPrice(machineObj.machinePriceNVC) + " NVC$";
                     itemFunctionality.text = "Production Multiplier : " + machineObj.machineProductionMultiplier.ToString();
                     break;
                 case ItemType.PowerDevice:
                     PowerDeviceDataBean powerObj = (PowerDeviceDataBean)targetData;
-                    mainItemName.text = targetData.machineName;
-                    mainItemPrice.text = "NCV$ : " + powerObj.machinePriceNVC.ToString();
                     itemNameUI.text = "Item Name : " + powerObj.machineName;
                     itemType.text = "Item Genre : " + powerObj.machineType;
                     storageSize.text = "Storage Size : " + powerObj.storageSize.ToString();
-                    itemPrice.text = "Item Price : " + powerObj.machinePriceNVC.ToString() + " NVC$";
+                    itemPrice.text = "Item Price : " + FormatPrice(powerObj.machinePriceNVC) + " NVC$";
                     itemFunctionality.text = "Power Generate/Hour :: " + powerObj.powerGeneratePerHour.ToString();
+                    break;
+                case ItemType.Storage:
+                    StorageDataBean storageObj = (StorageDataBean)targetData;
+                    itemNameUI.text = "Item Name : " + storageObj.machineName;
+                    itemType.text = "Item Genre : " + storageObj.machineType;
+                    storageSize.text = "Storage Size : " + storageObj.storageSize.ToString();
+                    itemPrice.text = "Item Price : " + FormatPrice(storageObj.machinePriceNVC) + " NVC$";
+                    itemFunctionality.text = "Production Multiplier : " + storageObj.storageSize;
+                    break;
+                case ItemType.ResearchAndDevelopDevice:
+                    StorageDataBean rAndDObj = (StorageDataBean)targetData;
+                    itemNameUI.text = "Item Name : " + rAndDObj.machineName;
+                    itemType.text = "Item Genre : " + rAndDObj.machineType;
+                    storageSize.text = "Storage Size : " + rAndDObj.storageSize.ToString();
+                    itemPrice.text = "Item Price : " + FormatPrice(rAndDObj.machinePriceNVC) + " NVC$";
+                    itemFunctionality.text = "Production Multiplier : " + rAndDObj.storageSize;
+                    break;
+                case ItemType.EnvironmentalControlDevice:
+                    StorageDataBean envDeviceObj = (StorageDataBean)targetData;
+                    itemNameUI.text = "Item Name : " + envDeviceObj.machineName;
+                    itemType.text = "Item Genre : " + envDeviceObj.machineType;
+                    storageSize.text = "Storage Size : " + envDeviceObj.storageSize.ToString();
+                    itemPrice.text = "Item Price : " + FormatPrice(envDeviceObj.machinePriceNVC) + " NVC$";
+                    itemFunctionality.text = "Production Multiplier : " + envDeviceObj.storageSize;
                     break;
                 default:
                     break;
@@ -68,6 +86,11 @@ public class ShopMachineryDescriptionController : MonoBehaviour
         itemGameResourceStatus.SetActive(false);
 
         inItemDescriptionPanel.SetActive(false);
+    }
+
+    private string FormatPrice(int price)
+    {
+        return price.ToString("N0");
     }
 
 }

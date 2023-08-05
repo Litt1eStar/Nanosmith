@@ -20,7 +20,7 @@ public class GeneratedItemObjectController : MonoBehaviour
         if (itemData != null)
         {
             itemName.text = myData.itemName;
-            itemPrice.text = myData.itemMarginNVC.ToString();
+            itemPrice.text = myData.itemMarginNVC.ToString() + " NVC$";
             itemIcon.sprite = SpriteSheetUtil.Instance.GetSpriteByName(itemData.itemKey + "_icon");
             selection.SetActive(false);
         }
@@ -41,15 +41,6 @@ public class GeneratedItemObjectController : MonoBehaviour
         else
         {
             selection.SetActive(false);
-        }
-
-        int x = 10;
-
-        bool checkValueOfX = x < 10 ? true : false;
-
-        if (x < 10)
-        {
-            print("x is less than 10");
         }
     }
 

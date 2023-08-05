@@ -13,8 +13,6 @@ public class ShopGeneratedItemDescriptionController : MonoBehaviour
     public GameObject inItemDescriptionPanel;
 
     public Image itemIcon;
-    public TextMeshProUGUI mainItemName;
-    public TextMeshProUGUI mainItemPrice;
 
     public TextMeshProUGUI itemNameUI;
     public TextMeshProUGUI itemGenre;
@@ -36,8 +34,6 @@ public class ShopGeneratedItemDescriptionController : MonoBehaviour
             {
                 case ItemType.GenerateRequireItem:
                     GenerateRequiredItemDataBean gameResourceData = (GenerateRequiredItemDataBean)targetData;
-                    mainItemName.text = targetData.itemName;
-                    mainItemPrice.text = "NCV$ : " +  gameResourceData.itemMarginNVC.ToString();
 
                     itemNameUI.text = "Item Name : " + gameResourceData.itemName;
                     #region itemGenreRemoveNull

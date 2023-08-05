@@ -23,4 +23,48 @@ public class GameObjectUtil : MonoSingleton<GameObjectUtil>
         }
         return go;
     }
+
+
+    public List<GameObject> GetChildren(GameObject parent)
+    {
+        List<GameObject> list = new List<GameObject>();
+        Transform[] ts = parent.transform.GetComponentsInChildren<Transform>();
+        foreach (Transform t in ts)
+        {
+            if (t.gameObject.name != parent.name)
+            {
+                list.Add(t.gameObject);
+            }
+        }
+        return list;
+    }
+
+    public List<GameObject> GetFirstDeptChildren(GameObject parent)
+    {
+        List<GameObject> list = new List<GameObject>();
+        Transform[] ts = parent.transform.GetComponentsInChildren<Transform>();
+        foreach (Transform t in ts)
+        {
+            bool isParent = t.gameObject == parent;
+            bool isSameParent = t.transform.parent.gameObject == parent.gameObject;
+            if (!isParent && isSameParent)
+            {
+                list.Add(t.gameObject);
+            }
+        }
+        return list;
+    }
+    public void DestroyAllChildren(GameObject parent)
+    {
+        if (parent.IsDestroyed() || parent.transform == null || parent.transform.childCount == 0)
+        {
+            return;
+        }
+
+        foreach (Transform child in parent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
 }
