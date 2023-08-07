@@ -26,7 +26,7 @@ public class ShopCartController : MonoBehaviour
 
         Debug.Log("Selected Cart Item name : " + currentData.itemData.machineName);
     }
-    public void AddToCart(MachineryDataBean targetItem, ShopCartController shopCartController)
+    public void AddToCart(MachineryDataBean targetItem, ShopMachineryController shopController)
     {
         if (targetItem != null)
         {
@@ -63,11 +63,12 @@ public class ShopCartController : MonoBehaviour
     public List<CartMachineryItemController> CheckoutItemInCart()
     {
         List<CartMachineryItemController> tmpItemList = new List<CartMachineryItemController>();
-        foreach (CartMachineryItemController item in itemsInCartList)
+        itemsInCartList.ForEach(item =>
         {
-            Destroy(item.gameObject);
-        }
-        itemsInCartList.Clear();
+            tmpItemList.Add(item);
+            Debug.Log("TmpItemList Data :: [" + tmpItemList.ToString() + "]");
+        });
+        ClearCart();
         CalculateTotal();
         return tmpItemList;
     }

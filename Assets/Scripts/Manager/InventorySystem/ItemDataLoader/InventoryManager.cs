@@ -86,11 +86,9 @@ public class InventoryManager : MonoBehaviour
            
             //Debug.Log("itemRecipe :: [ItemKey01] " + itemRecipeKey01 + " + [ItemKey02] " + itemRecipeKey02 + " + [ItemKey03] " + itemRecipeKey03);
             #endregion
-
             string itemSeasonalPopularity = fields[17];
             int itemProductionRatePerMinute = int.Parse(fields[18]);
             string itemDescription = fields[19];
-
             ItemsDataBean item;
             //item = new ItemsDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemRecipe);
             switch (itemType)

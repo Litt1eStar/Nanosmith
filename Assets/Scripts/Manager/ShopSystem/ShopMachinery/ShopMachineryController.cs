@@ -119,17 +119,24 @@ public class ShopMachineryController : MonoBehaviour
 
     public void AddToCart()
     {
-        Debug.Log("Current Data[ShopController] :: " + currentData);
-        shopCart_Controller.AddToCart(currentData, shopCart_Controller);
+        if (currentData != null)
+        {
+            shopCart_Controller.AddToCart(currentData, this);
+        }
     }
 
     public void CheckOutItemInCart()
     {
-        /*if (shopCart_Controller.totalPrice < playerWallet)
+        if (shopCart_Controller.totalPrice < playerWallet)
         {
-            Main.PlayerManager.AddPlayerInventory(shopCart_Controller.CheckoutItemInCart());
-        }*/
-        shopCart_Controller.CheckoutItemInCart();
+            if (shopCart_Controller.CheckoutItemInCart() != null)
+            {
+                Main.PlayerManager.AddPlayerInventory(shopCart_Controller.CheckoutItemInCart());
+            }
+            //Debug.Log("CheckOutItemInCart Data :: " + shopCart_Controller.CheckoutItemInCart().Count);
+            
+        }
+        //shopCart_Controller.CheckoutItemInCart();
     }
 
 }

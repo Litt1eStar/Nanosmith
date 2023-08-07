@@ -6,6 +6,7 @@ public class PlayerItemData : MonoBehaviour
 {
     public ItemType itemType;
     public ItemsDataBean itemDataBean;
+
     public MachineryDataBean machineDataBean;
     public int stack;
 

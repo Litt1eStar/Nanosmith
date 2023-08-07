@@ -12,7 +12,8 @@ public class PlayerManager : MonoBehaviour
         targetItem.ForEach(itemInCart =>
         {
             playerItemList.Add(new PlayerItemData(itemInCart.itemData));
-        });
 
+        });
+        playerInventory.AddPlayerInventory(playerItemList);
     }
 }

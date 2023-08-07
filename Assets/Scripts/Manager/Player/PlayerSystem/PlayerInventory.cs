@@ -6,17 +6,14 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public Dictionary<MachineryDataBean, PlayerItemData> machineryResourceDict = new Dictionary<MachineryDataBean, PlayerItemData>();
-    //public Dictionary<string, MachineryDataBean> machineryResourceDict = new Dictionary<string, MachineryDataBean>();
-
-    //public Dictionary<string, ConsumableIteamDataBean> gameConsumableItemDict = new Dictionary<string, ConsumableIteamDataBean>();
-
+    public Dictionary<PlayerItemData, MachineryDataBean> machineResourceDict = new Dictionary<PlayerItemData, MachineryDataBean>();
     public void AddPlayerInventory(List<PlayerItemData> playerAddItemToList)
     {
         playerAddItemToList.ForEach(item =>
         {
             if (machineryResourceDict.ContainsKey(item.machineDataBean))
             {
-                machineryResourceDict[item.machineDataBean].stack+=1;
+                machineryResourceDict[item.machineDataBean].stack +=1;
             }
             else
             {
@@ -24,23 +21,23 @@ public class PlayerInventory : MonoBehaviour
             }
         });
 
-        /*machineryResourceDict.Values.ToList().ForEach(playerItems =>
+        machineryResourceDict.Values.ToList().ForEach(playerItems =>
         {
             switch (playerItems.itemType)
             {
                 case ItemType.Machine:
-                    if (machineryResourceDict.ContainsKey(playerItems))
+                    if (machineryResourceDict.ContainsKey(playerItems.machineDataBean))
                     {
-                        machineryResourceDict[playerItems] = (MachineryDataBean)playerItems.itemDataBean;
+                        machineResourceDict[playerItems] = (MachineryDataBean)playerItems.machineDataBean;
                     }
                     else
                     {
-                        machineryResourceDict.Add(playerItems, (MachineryDataBean)playerItems.itemDataBean);
+                        machineResourceDict.Add(playerItems, (MachineryDataBean)playerItems.machineDataBean);
                     }
                     break;
             }
             
-        });*/
+        });
 
 
         Debug.Log("AddPlayerInventory Complete :: " + machineryResourceDict.Count);
