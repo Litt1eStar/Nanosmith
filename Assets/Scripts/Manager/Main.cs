@@ -25,5 +25,6 @@ public class Main : MainBase
         GameplayManager = GetManagerComponentFromChild(GameplayManager);
         InventoryManager = GetManagerComponentFromChild(InventoryManager);
         MachineManager = GetManagerComponentFromChild(MachineManager);
+        PlayerManager = GetManagerComponentFromChild(PlayerManager);
     }
 }

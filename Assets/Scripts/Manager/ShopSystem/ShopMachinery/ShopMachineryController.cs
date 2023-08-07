@@ -129,12 +129,20 @@ public class ShopMachineryController : MonoBehaviour
     {
         if (shopCart_Controller.totalPrice < playerWallet)
         {
-            if (shopCart_Controller.CheckoutItemInCart() != null)
+            if (shopCart_Controller.CheckoutItemInCart().Count > 2)
             {
-                Main.PlayerManager.AddPlayerInventory(shopCart_Controller.CheckoutItemInCart());
+                Debug.Log("CheckOutItemInCart Data :: " + shopCart_Controller.CheckoutItemInCart().Count);
+                if (shopCart_Controller.CheckoutItemInCart() != null)
+                {
+                    Main.PlayerManager.AddPlayerInventory(shopCart_Controller.CheckoutItemInCart());
+                    shopCart_Controller.ClearCart();
+                }
+                else
+                {
+                    Debug.Log("CheckOutItemInCart is ERROR");
+                    return;
+                }
             }
-            //Debug.Log("CheckOutItemInCart Data :: " + shopCart_Controller.CheckoutItemInCart().Count);
-            
         }
         //shopCart_Controller.CheckoutItemInCart();
     }

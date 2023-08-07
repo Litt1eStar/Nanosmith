@@ -8,12 +8,21 @@ public class PlayerManager : MonoBehaviour
     
     public void AddPlayerInventory(List<CartMachineryItemController> targetItem)
     {
-        List<PlayerItemData> playerItemList = new List<PlayerItemData>();
-        targetItem.ForEach(itemInCart =>
+        Debug.Log(targetItem.Count);
+        //Debug.Log("AddPlayerInventory Is ACTIVE");
+        if (targetItem != null)
         {
-            playerItemList.Add(new PlayerItemData(itemInCart.itemData));
-
-        });
-        playerInventory.AddPlayerInventory(playerItemList);
+            List<PlayerItemData> playerItemList = new List<PlayerItemData>();
+            targetItem.ForEach(itemInCart =>
+            {
+                playerItemList.Add(new PlayerItemData(itemInCart.itemData));
+                
+            });
+            playerInventory.AddPlayerInventory(playerItemList);
+        }
+        else
+        {
+            Debug.Log("TargetItem is NULL");
+        }
     }
 }

@@ -29,7 +29,7 @@ public class MachineryDataBean
         this.storageSize = storageSize;
     }
 
-    public int stack { get; internal set; }
+    //public int stack { get; internal set; }
 
 
     //public int machineProductionMultiplier; // 8

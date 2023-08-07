@@ -37,7 +37,7 @@ public class SpriteSheetUtil : MonoSingleton<SpriteSheetUtil>
         {
             //Debug.Log("Name :: " + name);
             //Debug.Log("Name :: " + name + " :: this.spriteData.ContainKey (name) :: " + this.spriteData.ContainsKey(name));
-            Debug.Log("GetSpriteByName ContainsKey :: " + this.spriteData.ContainsKey(name));
+            //Debug.Log("GetSpriteByName ContainsKey :: " + this.spriteData.ContainsKey(name));
             if (this.spriteData.ContainsKey(name)) //If spriteData Contain key that is same from Parameter of Method
             {
                 spriteChoose = this.spriteData[name]; // Let the value of spriteData to be value of spriteChoose

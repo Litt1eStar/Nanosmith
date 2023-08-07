@@ -11,32 +11,51 @@ public class PlayerInventory : MonoBehaviour
     {
         playerAddItemToList.ForEach(item =>
         {
-            if (machineryResourceDict.ContainsKey(item.machineDataBean))
-            {
-                machineryResourceDict[item.machineDataBean].stack +=1;
+            Debug.Log("Machine Name :: " + item.machineDataBean.machineName);
+            if (item != null)
+            {       
+                if (machineryResourceDict.ContainsKey(item.machineDataBean))
+                {
+                    machineryResourceDict[item.machineDataBean].stack += 1;
+                    Debug.Log("Stack is increased to " + machineryResourceDict[item.machineDataBean].stack);
+                }
+                else
+                {
+                    machineryResourceDict.Add(item.machineDataBean, item);
+                }
             }
             else
             {
-                machineryResourceDict.Add(item.machineDataBean, item);
+                Debug.Log("AddPlayerInventory HAVE ERRORRRRRRR");
+                return;
             }
         });
 
+
         machineryResourceDict.Values.ToList().ForEach(playerItems =>
         {
-            switch (playerItems.itemType)
+            if (playerItems != null)
             {
-                case ItemType.Machine:
-                    if (machineryResourceDict.ContainsKey(playerItems.machineDataBean))
-                    {
-                        machineResourceDict[playerItems] = (MachineryDataBean)playerItems.machineDataBean;
-                    }
-                    else
-                    {
-                        machineResourceDict.Add(playerItems, (MachineryDataBean)playerItems.machineDataBean);
-                    }
-                    break;
+                switch (playerItems.itemType)
+                {
+                    case ItemType.Machine:
+                        if (machineryResourceDict.ContainsKey(playerItems.machineDataBean))
+                        {
+                            machineResourceDict[playerItems] = (MachineryDataBean)playerItems.machineDataBean;
+                            Debug.Log("Machine Item Object :: " + machineResourceDict[playerItems].machineName); //Isn't work for now
+                        }
+                        else
+                        {
+                            machineResourceDict.Add(playerItems, (MachineryDataBean)playerItems.machineDataBean);
+                            Debug.Log("Machine Item Object :: " + machineResourceDict[playerItems].machineName); //Isn't work for now
+                        }
+                        break;
+                }
             }
-            
+            else
+            {
+                Debug.Log("AddPlayerInventory HAVE ERRORRRRRRR");
+            }
         });
 
 

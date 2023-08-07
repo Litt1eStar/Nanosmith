@@ -66,9 +66,9 @@ public class ShopCartController : MonoBehaviour
         itemsInCartList.ForEach(item =>
         {
             tmpItemList.Add(item);
-            Debug.Log("TmpItemList Data :: [" + tmpItemList.ToString() + "]");
+            //Debug.Log("TmpItemList Data :: [" + tmpItemList.ToString() + "]");
         });
-        ClearCart();
+        //ClearCart();
         CalculateTotal();
         return tmpItemList;
     }
