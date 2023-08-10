@@ -137,6 +137,7 @@ public class PlayerInventory : MonoBehaviour
             else
             {
                 Debug.LogError("[ item is null ]");
+                Debug.Log("Hello");
             }
         });
 
