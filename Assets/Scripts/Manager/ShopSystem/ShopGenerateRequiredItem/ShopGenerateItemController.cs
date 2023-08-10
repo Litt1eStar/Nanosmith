@@ -14,8 +14,14 @@ public class ShopGenerateItemController : MonoBehaviour
     public delegate void SelectShopItemsObject(ItemsDataBean itemsDataBean);
     public SelectShopItemsObject selectShopItemsObject;
 
+    public ShopItemCartController shopItemCart_Controller;
+
     private ItemsDataBean currentData;
     public int openCounter = 0;
+
+    public long playerWallet = 900000000000000000;
+
+
     private void Awake()
     {
         SpriteSheetUtil.Instance.Init();
@@ -34,14 +40,52 @@ public class ShopGenerateItemController : MonoBehaviour
             AddItemToPanel();
             openCounter += 1;
         }
- 
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Main.PlayerManager.playerInventory.InfoPlayerInventoryTextConsole();
+        }
+
+    }
+
+    public void AddToCart()
+    {
+        Debug.Log("currentData :: " + currentData); // null
+        if (currentData != null)
+        {
+            shopItemCart_Controller.AddToCart(currentData, this);
+            //Debug.Log("Data :: " + currentData + " | ShopCartController :: " + this);
+        }
+    }
+
+    public void CheckOutItemInCart()
+    {
+        if (shopItemCart_Controller.totalPrice < playerWallet)
+        {
+            if (shopItemCart_Controller.CheckoutItemInCart().Count > 0)
+            {
+                //Debug.Log("CheckOutItemInCart Data :: " + shopCart_Controller.CheckoutItemInCart().Count);
+                if (shopItemCart_Controller.CheckoutItemInCart() != null)
+                {
+                    Main.PlayerManager.AddPlayerInventoryFromItemShop(shopItemCart_Controller.CheckoutItemInCart());
+                    //Debug.Log("InCart Item :: " + shopItemCart_Controller.CheckoutItemInCart());
+                    shopItemCart_Controller.ClearCart();
+                }
+                else
+                {
+                    Debug.Log("CheckOutItemInCart is ERROR");
+                    return;
+                }
+            }
+        }
     }
     public void OnClickSelectedObject(ItemsDataBean itemsDataBean)
     {
         currentData = itemsDataBean;
+        //Debug.Log("currentData[OnClickSelectedObject] :: " + currentData);
         selectShopItemsObject?.Invoke(currentData);
 
-        Debug.Log("Selected Item ID : " + currentData.itemID + " | name : " + currentData.itemName);
+        //Debug.Log("Selected Item ID : " + currentData.itemID + " | name : " + currentData.itemName);
     }
 
     public void OnclickSeeMoreInformation(ItemsDataBean itemsDataBean)
@@ -55,7 +99,7 @@ public class ShopGenerateItemController : MonoBehaviour
     public void CloseShopPanel()
     {
         ShopPanel.SetActive(false);
-        Debug.Log("CloseShopPanel is WORKING :: ShopPanel Name ::"  + ShopPanel.name);
+        Debug.Log("CloseShopPanel is WORKING :: ShopPanel Name ::" + ShopPanel.name);
     }
     public void OpenShop()
     {

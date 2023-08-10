@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class CartMachineryItemController : MonoBehaviour
 {
-    public GameObject selection;
     public Image itemIcon;
 
     public MachineryDataBean itemData;
-    private ShopCartController cartController;
+
+    private ShopMachineryCartController cartController;
 
     private string machinePriceFormat;
     public void Init(MachineryDataBean myData)
@@ -19,9 +19,10 @@ public class CartMachineryItemController : MonoBehaviour
         if (itemData != null)
         {
             itemIcon.sprite = SpriteSheetUtil.Instance.GetSpriteByName(itemData.itemKey + "_icon");
-            selection.SetActive(false);
+            //selection.SetActive(false);
         }
     }
+
 
     public void OnClickSelectedObject()//*******
     {
@@ -29,14 +30,14 @@ public class CartMachineryItemController : MonoBehaviour
         Debug.Log(this.name);
         cartController.OnClickSelectedObject(this);
     }
-    public void RegisterShopMachineController(ShopCartController shopCrtl)
+    public void RegisterShopMachineController(ShopMachineryCartController shopCrtl)
     {
         cartController = shopCrtl;
         //RegisterSelectDelegate(cartController.selectCartItemsObject);
         shopCrtl.selectCartItemObject += SelectedObject;
     }
 
-    public void RegisterSelectDelegate(ShopCartController cartCtrl)
+    public void RegisterSelectDelegate(ShopMachineryCartController cartCtrl)
     {
         cartController = cartCtrl;
         cartCtrl.selectCartItemObject += SelectedObject;
@@ -45,11 +46,11 @@ public class CartMachineryItemController : MonoBehaviour
     {
         if (itemInCart == this)
         {
-            selection.SetActive(true);
+            //selection.SetActive(true);
         }
         else
         {
-            selection.SetActive(false);
+            //selection.SetActive(false);
         }
     }
     private string FormatPrice(int price)

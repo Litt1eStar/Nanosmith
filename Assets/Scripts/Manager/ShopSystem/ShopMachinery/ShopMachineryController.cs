@@ -10,7 +10,7 @@ public class ShopMachineryController : MonoBehaviour
     public GameObject shopItemGridLayout;
     public ShopMachineryDescriptionController shopMachineryDescriptionController;
 
-    public ShopCartController shopCart_Controller;
+    public ShopMachineryCartController shopCart_Controller;
 
     public delegate void SelectShopItemsObject(MachineryDataBean machineryData);
     public SelectShopItemsObject selectShopItemsObject;
@@ -18,7 +18,7 @@ public class ShopMachineryController : MonoBehaviour
     private MachineryDataBean currentData;
     public int openCounter = 0;
 
-    public int playerWallet = 1000000000;
+    public long playerWallet = 900000000000000000;
 
     private void Awake()
     {
@@ -82,7 +82,6 @@ public class ShopMachineryController : MonoBehaviour
     {
         List<MachineryDataBean> allItems = Main.MachineManager.GetAllItemData();
         Debug.Log("Machine allItems :: " + allItems.Count);
-
         allItems.ForEach(data =>
         {
             GameObject go = GameObjectUtil.Instance.AddChild(shopItemGridLayout, itemObjectListPrefab);
@@ -129,9 +128,9 @@ public class ShopMachineryController : MonoBehaviour
     {
         if (shopCart_Controller.totalPrice < playerWallet)
         {
-            if (shopCart_Controller.CheckoutItemInCart().Count > 2)
+            if (shopCart_Controller.CheckoutItemInCart().Count > 0)
             {
-                Debug.Log("CheckOutItemInCart Data :: " + shopCart_Controller.CheckoutItemInCart().Count);
+                //Debug.Log("CheckOutItemInCart Data :: " + shopCart_Controller.CheckoutItemInCart().Count);
                 if (shopCart_Controller.CheckoutItemInCart() != null)
                 {
                     Main.PlayerManager.AddPlayerInventory(shopCart_Controller.CheckoutItemInCart());
@@ -143,6 +142,10 @@ public class ShopMachineryController : MonoBehaviour
                     return;
                 }
             }
+        }
+        else
+        {
+            Debug.Log("You money is not enough");
         }
         //shopCart_Controller.CheckoutItemInCart();
     }

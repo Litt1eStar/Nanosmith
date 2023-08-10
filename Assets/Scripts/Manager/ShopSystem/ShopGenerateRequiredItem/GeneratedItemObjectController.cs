@@ -44,11 +44,13 @@ public class GeneratedItemObjectController : MonoBehaviour
         }
     }
 
-    
+
 
     public void OnClickSelectedObject()
     {
-        shopController.selectShopItemsObject(itemData);
+        shopController.OnClickSelectedObject(itemData);
+        //shopController.selectShopItemsObject(itemData);
+        //Debug.Log("OnClickSelectedObject[GeneratedItemObjectController] :: " + itemData);
     }
 
     public void OnClickSeeMoreInformation()

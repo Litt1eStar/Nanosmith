@@ -4,7 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class ShopCartController : MonoBehaviour
+public class ShopMachineryCartController : MonoBehaviour
 {
     public List<CartMachineryItemController> itemsInCartList = new List<CartMachineryItemController>();
     
@@ -17,7 +17,7 @@ public class ShopCartController : MonoBehaviour
 
     private CartMachineryItemController currentData;
 
-    public int totalPrice = 0;
+    public long totalPrice = 0;
 
     public void OnClickSelectedObject(CartMachineryItemController itemDataBean) //********
     {
@@ -81,21 +81,22 @@ public class ShopCartController : MonoBehaviour
             Destroy(item.gameObject);
         }
         itemsInCartList.Clear();
+        CalculateTotal();
     }
 
     public void CalculateTotal()
     {
-        Debug.Log("CalculateTotal is ACTIVE");
-        itemsInCartList.ForEach(x =>
-        {
-           totalPrice += x.itemData.machinePriceNVC;
+        //Debug.Log("CalculateTotal is ACTIVE");
+        long tmpTotalPrice = 0;
+        itemsInCartList.ForEach(x => {
+            tmpTotalPrice += x.itemData.machinePriceNVC;
         });
 
-        totalPriceText.text = "Total Price : " + FormatPrice(totalPrice) + " NVC$";
-
+        totalPrice = tmpTotalPrice;
+        totalPriceText.text = "Total Price :: " + FormatPrice(totalPrice);
     }
 
-    private string FormatPrice(int price)
+    private string FormatPrice(long price)
     {
         return price.ToString("N0");
     }
