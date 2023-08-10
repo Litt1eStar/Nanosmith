@@ -1540,7 +1540,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 994176696}
+      - m_Target: {fileID: 994176700}
         m_TargetAssemblyTypeName: ShopGenerateItemController, Assembly-CSharp
         m_MethodName: CheckOutItemInCart
         m_Mode: 1
@@ -1749,9 +1749,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230247923}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 54024349}
@@ -1760,7 +1760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0.000015258789}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &255943380
@@ -6727,7 +6727,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 994176700}
+      - m_Target: {fileID: 994176702}
         m_TargetAssemblyTypeName: ShopItemCartController, Assembly-CSharp
         m_MethodName: RemoveFromCart
         m_Mode: 1
@@ -7312,12 +7312,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 994176692}
-  - component: {fileID: 994176696}
-  - component: {fileID: 994176700}
-  - component: {fileID: 994176695}
   - component: {fileID: 994176698}
   - component: {fileID: 994176697}
   - component: {fileID: 994176699}
+  - component: {fileID: 994176702}
+  - component: {fileID: 994176701}
+  - component: {fileID: 994176700}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -7340,48 +7340,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &994176695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994176691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3cd963c16fa77a478112e0f52a0e8f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDescriptionPanel: {fileID: 255943380}
-  itemGameResourceStatus: {fileID: 1571789736}
-  inItemDescriptionPanel: {fileID: 798266573}
-  itemIcon: {fileID: 2112411360}
-  itemNameUI: {fileID: 898430474}
-  itemGenre: {fileID: 541333228}
-  itemRarity: {fileID: 634060304}
-  itemPrice: {fileID: 183639568}
-  productionRate: {fileID: 127848980}
-  itemDescription: {fileID: 447129146}
---- !u!114 &994176696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994176691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6049986c4c4f4b478624ea1b974e071, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShopPanel: {fileID: 1551097766}
-  itemObjectListPrefab: {fileID: 1911310029542117447, guid: 56c0e13f566257b49b7f3fd164b2d63a,
-    type: 3}
-  shopItemGridLayout: {fileID: 1161104994}
-  shopGeneratedItemDescriptionController: {fileID: 994176695}
-  shopItemCart_Controller: {fileID: 994176700}
-  openCounter: 0
-  playerWallet: 900000000000000000
 --- !u!114 &994176697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7451,7 +7409,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 994176691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a0c3973261ab5644969a87ec169bbec, type: 3}
+  m_Script: {fileID: 11500000, guid: 40565b1c3c74eda43bca5ce648bda4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShopPanel: {fileID: 1551097766}
+  itemObjectListPrefab: {fileID: 1911310029542117447, guid: 56c0e13f566257b49b7f3fd164b2d63a,
+    type: 3}
+  shopItemGridLayout: {fileID: 1161104994}
+  shopGeneratedItemDescriptionController: {fileID: 994176701}
+  shopItemCart_Controller: {fileID: 994176702}
+  openCounter: 0
+  playerWallet: 900000000000000000
+--- !u!114 &994176701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994176691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20224895e9f6e64e91afcf449a079f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDescriptionPanel: {fileID: 255943380}
+  itemGameResourceStatus: {fileID: 1571789736}
+  inItemDescriptionPanel: {fileID: 798266573}
+  itemIcon: {fileID: 2112411360}
+  itemNameUI: {fileID: 898430474}
+  itemGenre: {fileID: 541333228}
+  itemRarity: {fileID: 634060304}
+  itemPrice: {fileID: 183639568}
+  productionRate: {fileID: 127848980}
+  itemDescription: {fileID: 447129146}
+--- !u!114 &994176702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994176691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424a332a3b282ef468c2dc4357257fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemsInCartList: []
@@ -8210,7 +8210,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 994176696}
+      - m_Target: {fileID: 994176700}
         m_TargetAssemblyTypeName: ShopGenerateItemController, Assembly-CSharp
         m_MethodName: AddToCart
         m_Mode: 1
@@ -9413,7 +9413,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 994176696}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopGenerateItemController, Assembly-CSharp
         m_MethodName: CloseShopPanel
         m_Mode: 1
@@ -11379,7 +11379,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 994176696}
+      - m_Target: {fileID: 994176700}
         m_TargetAssemblyTypeName: ShopGenerateItemController, Assembly-CSharp
         m_MethodName: OpenShop
         m_Mode: 1
@@ -13440,7 +13440,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 994176695}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopGeneratedItemDescriptionController, Assembly-CSharp
         m_MethodName: CloseDescriptionPanel
         m_Mode: 1

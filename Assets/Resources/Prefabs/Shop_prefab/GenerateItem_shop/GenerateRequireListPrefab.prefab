@@ -87,8 +87,8 @@ GameObject:
   - component: {fileID: 1911310029542117448}
   - component: {fileID: 1911310029542117450}
   - component: {fileID: 1911310029542117449}
+  - component: {fileID: 3364172221694105554}
   - component: {fileID: 1407024328089397402}
-  - component: {fileID: 1911310029542117453}
   m_Layer: 5
   m_Name: GenerateRequireListPrefab
   m_TagString: Untagged
@@ -160,6 +160,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3364172221694105554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911310029542117447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb837f90698b0448bd810b09f0609aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selection: {fileID: 7509338109533238058}
+  itemIcon: {fileID: 1911310028608204975}
+  itemName: {fileID: 1911310029775222035}
+  itemPrice: {fileID: 1911310029734815952}
 --- !u!114 &1407024328089397402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +220,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1911310029542117453}
+      - m_Target: {fileID: 3364172221694105554}
         m_TargetAssemblyTypeName: GeneratedItemObjectController, Assembly-CSharp
         m_MethodName: OnClickSelectedObject
         m_Mode: 1
@@ -216,22 +232,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1911310029542117453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911310029542117447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 173e4666aba171447a33cf0d28d57914, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selection: {fileID: 7509338109533238058}
-  itemIcon: {fileID: 1911310028608204975}
-  itemName: {fileID: 1911310029775222035}
-  itemPrice: {fileID: 1911310029734815952}
 --- !u!1 &1911310029734815918
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1911310029542117453}
+      - m_Target: {fileID: 3364172221694105554}
         m_TargetAssemblyTypeName: GeneratedItemObjectController, Assembly-CSharp
         m_MethodName: OnClickSeeMoreInformation
         m_Mode: 1
