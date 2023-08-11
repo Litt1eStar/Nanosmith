@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ShopMachineryController : MonoBehaviour
+public class ShopMachinery_Controller : MonoBehaviour
 {
     public GameObject ShopPanel;
     public GameObject itemObjectListPrefab;
     public GameObject shopItemGridLayout;
-    public ShopMachineryDescriptionController shopMachineryDescriptionController;
 
-    public ShopMachineryCartController shopCart_Controller;
+    public ShopMachineryDesc_Controller shopMachineryDescriptionController;
+
+    public CartMachinery_Controller shopCart_Controller;
 
     public delegate void SelectShopItemsObject(MachineryDataBean machineryData);
     public SelectShopItemsObject selectShopItemsObject;
@@ -68,7 +69,6 @@ public class ShopMachineryController : MonoBehaviour
         ShopPanel.SetActive(false);
         shopCart_Controller.ClearCart();
         Debug.Log("CloseShopPanel is WORKING :: ShopPanel Name ::" + ShopPanel.name);
-        ClearShop();
         selectShopItemsObject = null;
     }
 
@@ -88,27 +88,27 @@ public class ShopMachineryController : MonoBehaviour
             switch (data.itemType)
             {
                 case ItemType.Machine:
-                    MachineryItemController machineObj = go.GetComponent<MachineryItemController>();
+                    MachineryItem_ObjectController machineObj = go.GetComponent<MachineryItem_ObjectController>();
                     machineObj.Init(data);
                     machineObj.RegisterShopGeneratedController(this);
                     break;
                 case ItemType.PowerDevice:        
-                    MachineryItemController powerObj = go.GetComponent<MachineryItemController>();
+                    MachineryItem_ObjectController powerObj = go.GetComponent<MachineryItem_ObjectController>();
                     powerObj.Init(data);
                     powerObj.RegisterShopGeneratedController(this);
                     break;
                 case ItemType.Storage:
-                    MachineryItemController storageObj = go.GetComponent<MachineryItemController>();
+                    MachineryItem_ObjectController storageObj = go.GetComponent<MachineryItem_ObjectController>();
                     storageObj.Init(data);
                     storageObj.RegisterShopGeneratedController(this);
                     break;
                 case ItemType.ResearchAndDevelopDevice:
-                    MachineryItemController rdObj = go.GetComponent<MachineryItemController>();
+                    MachineryItem_ObjectController rdObj = go.GetComponent<MachineryItem_ObjectController>();
                     rdObj.Init(data);
                     rdObj.RegisterShopGeneratedController(this);
                     break;
                 case ItemType.EnvironmentalControlDevice:
-                    MachineryItemController environmentControlObj = go.GetComponent<MachineryItemController>();
+                    MachineryItem_ObjectController environmentControlObj = go.GetComponent<MachineryItem_ObjectController>();
                     environmentControlObj.Init(data);
                     environmentControlObj.RegisterShopGeneratedController(this);
                     break;

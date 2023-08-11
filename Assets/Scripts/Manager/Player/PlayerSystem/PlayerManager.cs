@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     public PlayerInventory playerInventory;
     
-    public void AddPlayerInventory(List<CartMachineryItemController> targetItem)
+    public void AddPlayerInventory(List<CartMachineryItem_ObjectController> targetItem)
     {
         if (targetItem != null)
         {
@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour
 
 
 
-    public void AddPlayerInventoryFromItemShop(List<CartGenerateItemController> targetItem)
+    public void AddPlayerInventoryFromItemShop(List<CartGenerateItem_ObjectController> targetItem)
     {
         if (targetItem != null)
         {

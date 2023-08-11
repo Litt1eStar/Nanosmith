@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 8949917687307799891}
   - component: {fileID: 8949917687307799888}
   - component: {fileID: 8445632230802437507}
-  - component: {fileID: 8730350103590250375}
+  - component: {fileID: 4372024806950373863}
   m_Layer: 5
   m_Name: ItemCartListPrefab
   m_TagString: Untagged
@@ -333,8 +333,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8730350103590250375}
-        m_TargetAssemblyTypeName: CartGenerateItemController, Assembly-CSharp
+      - m_Target: {fileID: 4372024806950373863}
+        m_TargetAssemblyTypeName: CartGenerateItem_ObjectController, Assembly-CSharp
         m_MethodName: OnClickSelectedObject
         m_Mode: 1
         m_Arguments:
@@ -345,7 +345,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8730350103590250375
+--- !u!114 &4372024806950373863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8949917687307799902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7b734fe0c17934f924016fab046776, type: 3}
+  m_Script: {fileID: 11500000, guid: 4da5c940bccc575418ea48e6b9c18c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 8949917686089723318}

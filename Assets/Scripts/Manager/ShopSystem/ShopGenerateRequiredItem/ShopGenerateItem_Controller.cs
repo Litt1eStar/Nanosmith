@@ -4,17 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopGenerateItemController : MonoBehaviour
+public class ShopGenerateItem_Controller : MonoBehaviour
 {
     public GameObject ShopPanel;
     public GameObject itemObjectListPrefab;
     public GameObject shopItemGridLayout;
-    public ShopGeneratedItemDescriptionController shopGeneratedItemDescriptionController;
+    public ShopGenerateItemDesc_Controller shopGeneratedItemDescriptionController;
 
     public delegate void SelectShopItemsObject(ItemsDataBean itemsDataBean);
     public SelectShopItemsObject selectShopItemsObject;
 
-    public ShopItemCartController shopItemCart_Controller;
+    public CartGenerateItem_Controller shopItemCart_Controller;
 
     private ItemsDataBean currentData;
     public int openCounter = 0;
@@ -116,7 +116,7 @@ public class ShopGenerateItemController : MonoBehaviour
             {
                 GameObject go = GameObjectUtil.Instance.AddChild(shopItemGridLayout, itemObjectListPrefab);
                 Debug.Log("Item in ShopGRI :: " + data.itemName + " Type :: " + data.itemType);
-                GeneratedItemObjectController itemObj = go.GetComponent<GeneratedItemObjectController>();
+                GeneratedItem_ObjectController itemObj = go.GetComponent<GeneratedItem_ObjectController>();
                 itemObj.Init(data);
                 itemObj.RegisterShopGeneratedController(this); // Moment that shop was opened, this command will tell that what method is used
             }

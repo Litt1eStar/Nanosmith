@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using Unity.VisualScripting;
-public class ShopMachineryDescriptionController : MonoBehaviour
+public class ShopMachineryDesc_Controller : MonoBehaviour
 {
     public GameObject itemDescriptionPanel;
     public GameObject itemGameResourceStatus;

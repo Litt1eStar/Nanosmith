@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-public class ShopItemCartController : MonoBehaviour
+public class CartGenerateItem_Controller : MonoBehaviour
 {
-    public List<CartGenerateItemController> itemsInCartList = new List<CartGenerateItemController>();
+    public List<CartGenerateItem_ObjectController> itemsInCartList = new List<CartGenerateItem_ObjectController>();
 
     public GameObject itemObjectListPrefab;
     public GameObject cartItemGridLayout;
     public TextMeshProUGUI totalPriceText;
 
-    public delegate void SelectCartItemObject(CartGenerateItemController itemIncartObject);
+    public delegate void SelectCartItemObject(CartGenerateItem_ObjectController itemIncartObject);
     public SelectCartItemObject selectCartItemObject;
 
-    private CartGenerateItemController currentData;
+    private CartGenerateItem_ObjectController currentData;
 
     public int totalPrice = 0;
 
-    public void OnClickSelectedObject(CartGenerateItemController itemDataBean) //********
+    public void OnClickSelectedObject(CartGenerateItem_ObjectController itemDataBean) //********
     {
         currentData = itemDataBean;
         selectCartItemObject?.Invoke(currentData);
@@ -27,12 +27,12 @@ public class ShopItemCartController : MonoBehaviour
     }
 
 
-    public void AddToCart(ItemsDataBean targetItem, ShopGenerateItemController shopController)
+    public void AddToCart(ItemsDataBean targetItem, ShopGenerateItem_Controller shopController)
     {
         if (targetItem != null)
         {
             GameObject go = GameObjectUtil.Instance.AddChild(cartItemGridLayout, itemObjectListPrefab);
-            CartGenerateItemController itemObj = go.GetComponent<CartGenerateItemController>(); // get component of CartMachineryItemController
+            CartGenerateItem_ObjectController itemObj = go.GetComponent<CartGenerateItem_ObjectController>(); // get component of CartMachineryItemController
             itemObj.InitItemShop(targetItem);// Init itemObj by using value form targetItem
             itemObj.RegisterShopItemController(this);
 
@@ -42,11 +42,11 @@ public class ShopItemCartController : MonoBehaviour
     }
 
 
-    public void RemoveItemFromCart(CartGenerateItemController targetItem)
+    public void RemoveItemFromCart(CartGenerateItem_ObjectController targetItem)
     {
         if (itemsInCartList.Count > 0)
         {
-            CartGenerateItemController tmpTargetItem = itemsInCartList[itemsInCartList.IndexOf(targetItem)];
+            CartGenerateItem_ObjectController tmpTargetItem = itemsInCartList[itemsInCartList.IndexOf(targetItem)];
             itemsInCartList.Remove(tmpTargetItem);
             Destroy(tmpTargetItem.gameObject);
             currentData = null;
@@ -62,9 +62,9 @@ public class ShopItemCartController : MonoBehaviour
         }
     }
 
-    public List<CartGenerateItemController> CheckoutItemInCart()
+    public List<CartGenerateItem_ObjectController> CheckoutItemInCart()
     {
-        List<CartGenerateItemController> tmpItemList = new List<CartGenerateItemController>();
+        List<CartGenerateItem_ObjectController> tmpItemList = new List<CartGenerateItem_ObjectController>();
         itemsInCartList.ForEach(item =>
         {
             tmpItemList.Add(item);
@@ -78,7 +78,7 @@ public class ShopItemCartController : MonoBehaviour
 
     public void ClearCart()
     {
-        foreach (CartGenerateItemController item in itemsInCartList)
+        foreach (CartGenerateItem_ObjectController item in itemsInCartList)
         {
             Destroy(item.gameObject);
         }
@@ -97,7 +97,7 @@ public class ShopItemCartController : MonoBehaviour
         if (totalPriceText != null)
         {
             totalPrice = (int) tmpTotalPrice;
-            totalPriceText.text = "Total Price :: " + FormatPrice(totalPrice);
+            totalPriceText.text = "Total Price :: " + FormatPrice(totalPrice) + " NVC$";
         }
     }
 

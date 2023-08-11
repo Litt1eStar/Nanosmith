@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 
-public class ShopGeneratedItemDescriptionController : MonoBehaviour
+public class ShopGenerateItemDesc_Controller : MonoBehaviour
 {
     public GameObject itemDescriptionPanel;
     public GameObject itemGameResourceStatus;

@@ -4,34 +4,34 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class ShopMachineryCartController : MonoBehaviour
+public class CartMachinery_Controller : MonoBehaviour
 {
-    public List<CartMachineryItemController> itemsInCartList = new List<CartMachineryItemController>();
+    public List<CartMachineryItem_ObjectController> itemsInCartList = new List<CartMachineryItem_ObjectController>();
     
     public GameObject itemObjectListPrefab;
     public GameObject cartItemGridLayout;
     public TextMeshProUGUI totalPriceText;
 
-    public delegate void SelectCartItemObject(CartMachineryItemController itemIncartObject);
+    public delegate void SelectCartItemObject(CartMachineryItem_ObjectController itemIncartObject);
     public SelectCartItemObject selectCartItemObject;
 
-    private CartMachineryItemController currentData;
+    private CartMachineryItem_ObjectController currentData;
 
     public long totalPrice = 0;
 
-    public void OnClickSelectedObject(CartMachineryItemController itemDataBean) //********
+    public void OnClickSelectedObject(CartMachineryItem_ObjectController itemDataBean) //********
     {
         currentData = itemDataBean;
         selectCartItemObject?.Invoke(currentData);
 
         Debug.Log("Selected Cart Item name : " + currentData.itemData.machineName);
     }
-    public void AddToCart(MachineryDataBean targetItem, ShopMachineryController shopController)
+    public void AddToCart(MachineryDataBean targetItem, ShopMachinery_Controller shopController)
     {
         if (targetItem != null)
         {
             GameObject go = GameObjectUtil.Instance.AddChild(cartItemGridLayout, itemObjectListPrefab);
-            CartMachineryItemController itemObj = go.GetComponent<CartMachineryItemController>(); // get component of CartMachineryItemController
+            CartMachineryItem_ObjectController itemObj = go.GetComponent<CartMachineryItem_ObjectController>(); // get component of CartMachineryItemController
             itemObj.Init(targetItem);// Init itemObj by using value form targetItem
             itemObj.RegisterShopMachineController(this);
 
@@ -40,11 +40,11 @@ public class ShopMachineryCartController : MonoBehaviour
         }
     }
 
-    public void RemoveItemFromCart(CartMachineryItemController targetItem)
+    public void RemoveItemFromCart(CartMachineryItem_ObjectController targetItem)
     {
         if (itemsInCartList.Count > 0 )
         {
-            CartMachineryItemController tmpTargetItem = itemsInCartList[itemsInCartList.IndexOf(targetItem)];
+            CartMachineryItem_ObjectController tmpTargetItem = itemsInCartList[itemsInCartList.IndexOf(targetItem)];
             itemsInCartList.Remove(tmpTargetItem);
             Destroy(tmpTargetItem.gameObject);
             currentData = null;
@@ -60,9 +60,9 @@ public class ShopMachineryCartController : MonoBehaviour
         }
     }
 
-    public List<CartMachineryItemController> CheckoutItemInCart()
+    public List<CartMachineryItem_ObjectController> CheckoutItemInCart()
     {
-        List<CartMachineryItemController> tmpItemList = new List<CartMachineryItemController>();
+        List<CartMachineryItem_ObjectController> tmpItemList = new List<CartMachineryItem_ObjectController>();
         itemsInCartList.ForEach(item =>
         {
             tmpItemList.Add(item);
@@ -76,7 +76,7 @@ public class ShopMachineryCartController : MonoBehaviour
 
     public void ClearCart()
     {
-        foreach (CartMachineryItemController item in itemsInCartList)
+        foreach (CartMachineryItem_ObjectController item in itemsInCartList)
         {
             Destroy(item.gameObject);
         }
@@ -93,7 +93,7 @@ public class ShopMachineryCartController : MonoBehaviour
         });
 
         totalPrice = tmpTotalPrice;
-        totalPriceText.text = "Total Price :: " + FormatPrice(totalPrice);
+        totalPriceText.text = "Total Price :: " + FormatPrice(totalPrice) + " NVC$";
     }
 
     private string FormatPrice(long price)

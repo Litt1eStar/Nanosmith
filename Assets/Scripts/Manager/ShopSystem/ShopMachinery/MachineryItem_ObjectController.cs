@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 
-public class MachineryItemController : MonoBehaviour
+public class MachineryItem_ObjectController : MonoBehaviour
 {
     public GameObject selection;
     public Image itemIcon;
@@ -13,7 +13,7 @@ public class MachineryItemController : MonoBehaviour
     public TextMeshProUGUI itemPrice;
 
     private MachineryDataBean itemData;
-    private ShopMachineryController shopController;
+    private ShopMachinery_Controller shopController;
 
     public string machinePriceFormat;
     public void Init(MachineryDataBean myData)
@@ -28,14 +28,14 @@ public class MachineryItemController : MonoBehaviour
         }
     }
 
-    public void RegisterShopGeneratedController(ShopMachineryController shopCrtl)
+    public void RegisterShopGeneratedController(ShopMachinery_Controller shopCrtl)
     {
         shopController = shopCrtl;
         //RegisterSelectDelegate(shopController.selectShopItemsObject);
         shopCrtl.selectShopItemsObject += SelectedObject;
     }
 
-    public void RegisterSelectDelegate(ShopMachineryController.SelectShopItemsObject delegateMethods)
+    public void RegisterSelectDelegate(ShopMachinery_Controller.SelectShopItemsObject delegateMethods)
     {
         delegateMethods += SelectedObject;
     }

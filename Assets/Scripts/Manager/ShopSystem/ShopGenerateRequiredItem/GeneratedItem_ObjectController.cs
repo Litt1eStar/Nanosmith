@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 
-public class GeneratedItemObjectController : MonoBehaviour
+public class GeneratedItem_ObjectController : MonoBehaviour
 {
     public GameObject selection;
     public Image itemIcon;
@@ -13,7 +13,7 @@ public class GeneratedItemObjectController : MonoBehaviour
     public TextMeshProUGUI itemPrice;
 
     private ItemsDataBean itemData;
-    private ShopGenerateItemController shopController;
+    private ShopGenerateItem_Controller shopController;
     public void Init(ItemsDataBean myData)
     {
         itemData = myData;
@@ -26,7 +26,7 @@ public class GeneratedItemObjectController : MonoBehaviour
         }
     }
 
-    public void RegisterShopGeneratedController(ShopGenerateItemController shopCrtl)
+    public void RegisterShopGeneratedController(ShopGenerateItem_Controller shopCrtl)
     {
         shopController = shopCrtl;
         shopCrtl.selectShopItemsObject += SelectedObject;

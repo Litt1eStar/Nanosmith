@@ -4,13 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CartMachineryItemController : MonoBehaviour
+public class CartMachineryItem_ObjectController : MonoBehaviour
 {
     public Image itemIcon;
 
     public MachineryDataBean itemData;
 
-    private ShopMachineryCartController cartController;
+    private CartMachinery_Controller cartController;
 
     private string machinePriceFormat;
     public void Init(MachineryDataBean myData)
@@ -30,19 +30,19 @@ public class CartMachineryItemController : MonoBehaviour
         Debug.Log(this.name);
         cartController.OnClickSelectedObject(this);
     }
-    public void RegisterShopMachineController(ShopMachineryCartController shopCrtl)
+    public void RegisterShopMachineController(CartMachinery_Controller shopCrtl)
     {
         cartController = shopCrtl;
         //RegisterSelectDelegate(cartController.selectCartItemsObject);
         shopCrtl.selectCartItemObject += SelectedObject;
     }
 
-    public void RegisterSelectDelegate(ShopMachineryCartController cartCtrl)
+    public void RegisterSelectDelegate(CartMachinery_Controller cartCtrl)
     {
         cartController = cartCtrl;
         cartCtrl.selectCartItemObject += SelectedObject;
     }
-    public void SelectedObject(CartMachineryItemController itemInCart)
+    public void SelectedObject(CartMachineryItem_ObjectController itemInCart)
     {
         if (itemInCart == this)
         {
