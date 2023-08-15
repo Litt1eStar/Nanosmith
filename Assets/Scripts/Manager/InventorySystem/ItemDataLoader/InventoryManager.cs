@@ -37,8 +37,8 @@ public class InventoryManager : MonoBehaviour
             result = System.IO.File.ReadAllText(filepath);
         }
 
-        Debug.Log("Reading file from: " + filepath);
-        Debug.Log("Loaded File :: " + result);
+        //Debug.Log("Reading file from: " + filepath);
+        //Debug.Log("Loaded File :: " + result);
         ReadItemDataFromCSV(result);
 
 
@@ -64,7 +64,7 @@ public class InventoryManager : MonoBehaviour
             if (itemGenre[0] == "null") { itemGenre[0] = null; }
             else if (itemGenre[1] == "null") { itemGenre[1] = null; }
             else if (itemGenre[2] == "null") { itemGenre[2] = null; }
-            Debug.Log("Item Genre :: " + itemGenre[0] + " | " + itemGenre[1] + " | " + itemGenre[2]);
+            //Debug.Log("Item Genre :: " + itemGenre[0] + " | " + itemGenre[1] + " | " + itemGenre[2]);
             #endregion
 
             string itemKey = fields[5];
@@ -117,7 +117,7 @@ public class InventoryManager : MonoBehaviour
                     item = new ItemsDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarity, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemProductionRatePerMinute);
                     break;
             }
-            Debug.Log("item ItemDataBean created : " + item.itemID + " | " + item.itemName + " | itemMargin :: " + item.itemMarginNVC);
+            //Debug.Log("item ItemDataBean created : " + item.itemID + " | " + item.itemName + " | itemMargin :: " + item.itemMarginNVC);
             allItemList.Add(item);
         }
         inventoryModelContainer.SetAllItem(allItemList);

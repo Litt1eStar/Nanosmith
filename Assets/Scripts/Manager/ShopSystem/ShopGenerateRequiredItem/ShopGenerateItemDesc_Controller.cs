@@ -8,6 +8,8 @@ using Unity.VisualScripting;
 
 public class ShopGenerateItemDesc_Controller : MonoBehaviour
 {
+    public SliderBuyAmount_Controller sliderBuyAmount_Controller;
+
     public GameObject itemDescriptionPanel;
     public GameObject itemGameResourceStatus;
     public GameObject inItemDescriptionPanel;
@@ -68,4 +70,5 @@ public class ShopGenerateItemDesc_Controller : MonoBehaviour
 
         inItemDescriptionPanel.SetActive(false);
     }
+
 }

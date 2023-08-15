@@ -101,5 +101,12 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Amount of PlayerItemData :: " + playerInventory.allItemResourceDict.Count);
     }
 
-    
+    public PlayerGameplayData CreatePlayerGameplayData()
+    {
+
+        //Debug.Log(playerInventory.CreatePlayerGameplayInventory());
+        return new PlayerGameplayData(playerInventory.CreatePlayerGameplayInventory());
+
+     
+    }
 }

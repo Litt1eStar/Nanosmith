@@ -69,6 +69,15 @@ public enum ItemType
     EnvironmentalControlDevice = 16,
 }
 
+public enum ObstacleType
+{
+    StartPoint = -1,
+    Empty = 0,
+    Machine = 2,
+    Storage = 3,
+    PowerGenerator = 4,
+    Employee = 5
+}
 public enum GameSeasonal
 {
 

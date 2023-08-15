@@ -21,6 +21,29 @@ public class PlayerInventory : MonoBehaviour
     public Dictionary<PlayerItemData, GenerateRequiredItemDataBean> generateItemResourceDict = new Dictionary<PlayerItemData, GenerateRequiredItemDataBean>();
     #endregion
 
+    public PlayerGameplayInventory CreatePlayerGameplayInventory()
+    {
+        Dictionary<int, PlayerItemData> playerGameplayInventoryDict = new Dictionary<int, PlayerItemData>();
+        int i = 0;
+        foreach (PlayerItemData playerItem in allMachineryResourceDict.Values)
+        {
+            if (playerGameplayInventoryDict.ContainsKey(i))
+            {
+                playerGameplayInventoryDict[i] = playerItem;
+                //Debug.Log("Add Data to PlayerInventory :: " + playerGameplayInventoryDict);
+            }
+            else
+            {
+                playerGameplayInventoryDict.Add(i, playerItem);
+                //Debug.LogError(playerGameplayInventoryDict);
+            }
+            i++;
+        }
+
+        //Debug.Log(playerGameplayInventoryDict);
+        return new PlayerGameplayInventory(playerGameplayInventoryDict);
+       
+    }
     public void InfoPlayerInventoryTextConsole()
     {
         Debug.Log("--------------------------------------------------------------------------------------");

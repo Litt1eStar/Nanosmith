@@ -17,6 +17,8 @@ public class ShopGenerateItem_Controller : MonoBehaviour
     public CartGenerateItem_Controller shopItemCart_Controller;
 
     private ItemsDataBean currentData;
+    private ItemsDataBean openDescItemData;
+
     public int openCounter = 0;
 
     public long playerWallet = 900000000000000000;
@@ -50,10 +52,10 @@ public class ShopGenerateItem_Controller : MonoBehaviour
 
     public void AddToCart()
     {
-        Debug.Log("currentData :: " + currentData); // null
-        if (currentData != null)
+        Debug.Log("currentData :: " + openDescItemData); // null
+        if (openDescItemData != null)
         {
-            shopItemCart_Controller.AddToCart(currentData, this);
+            shopItemCart_Controller.AddToCart(openDescItemData, this);
             //Debug.Log("Data :: " + currentData + " | ShopCartController :: " + this);
         }
     }
@@ -82,6 +84,7 @@ public class ShopGenerateItem_Controller : MonoBehaviour
     public void OnClickSelectedObject(ItemsDataBean itemsDataBean)
     {
         currentData = itemsDataBean;
+        openDescItemData = currentData;
         //Debug.Log("currentData[OnClickSelectedObject] :: " + currentData);
         selectShopItemsObject?.Invoke(currentData);
 

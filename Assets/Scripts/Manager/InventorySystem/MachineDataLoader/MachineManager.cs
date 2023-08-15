@@ -39,8 +39,8 @@ public class MachineManager : MonoBehaviour
             result = System.IO.File.ReadAllText(filepath);
         }
 
-        Debug.Log("Reading file from: " + filepath);
-        Debug.Log("Loaded File :: " + result);
+        //Debug.Log("Reading file from: " + filepath);
+        //Debug.Log("Loaded File :: " + result);
         ReadItemDataFromCSV(result);
 
 
@@ -92,7 +92,7 @@ public class MachineManager : MonoBehaviour
                     item = new MachineryDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize);
                     break;
             }
-            Debug.Log("item MachineryDataBean created : " + item.itemID + " | " + item.machineName + " | " + item.itemType + " | " + item.storageSize + " | item Price :: " + item.machinePriceNVC);
+            //Debug.Log("item MachineryDataBean created : " + item.itemID + " | " + item.machineName + " | " + item.itemType + " | " + item.storageSize + " | item Price :: " + item.machinePriceNVC);
             allItemList.Add(item);
         }
         machineModelContainer.SetAllItem(allItemList);
