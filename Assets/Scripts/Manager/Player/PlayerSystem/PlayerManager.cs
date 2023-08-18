@@ -105,7 +105,16 @@ public class PlayerManager : MonoBehaviour
     {
 
         //Debug.Log(playerInventory.CreatePlayerGameplayInventory());
-        return new PlayerGameplayData(playerInventory.CreatePlayerGameplayInventory());
+        if (playerInventory.CreatePlayerGameplayInventory() != null)
+        {
+            return new PlayerGameplayData(playerInventory.CreatePlayerGameplayInventory());
+        }
+        else
+        {
+            Debug.LogError("return new PlayerGameplayData(playerInventory.CreatePlayerGameplayInventory()) is NULL");
+            return null;
+        }
+        
 
      
     }

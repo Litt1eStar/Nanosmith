@@ -10,7 +10,7 @@ public class PlayerGroundPlatform_Controller : MonoBehaviour
     public GameObject playerPrefab;
     public void Init(ObstacleType type)
     {
-        myType = type;
+        /*myType = type;
    
         if (myType != ObstacleType.Empty)
         {
@@ -26,7 +26,7 @@ public class PlayerGroundPlatform_Controller : MonoBehaviour
                 Debug.LogError("TargetPrefab is NULL");
             }
 
-        }
+        }*/
     }
 
     private void SetEmpty()
