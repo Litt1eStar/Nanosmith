@@ -9,4 +9,16 @@ public class PlayerGameplayInventory
     {
         this.gameItemListDict = gameItemListDict;
     }
+
+    public PlayerItemData CheckAndGetItemFromInventoryDataByItemID(string id)
+    {
+        foreach (PlayerItemData data in gameItemListDict.Values)
+        {
+            if (data.machineDataBean.itemID == id)
+            {
+                return data;
+            }
+        }
+        return null;
+    }
 }

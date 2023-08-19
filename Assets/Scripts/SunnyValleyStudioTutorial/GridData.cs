@@ -17,13 +17,15 @@ public class GridData : MonoBehaviour
             {
                 throw new Exception($"Dictionary already contains this position {pos}");
             }
+            Debug.Log("PositionToOccupy :: (" + pos.x + "," + pos.y + "," + pos.z +")");
             placedObjects[pos] = data;
+            Debug.Log("placedObject :: " + placedObjects[pos].ID);
         }
     }
 
-    private List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2 objectSize)
+    public List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2 objectSize)
     {
-        List<Vector3Int> returnVal = new();
+        List<Vector3Int> returnVal = new(); // gridPosition = (3, 0 ,2) : objectSize = (2,2) => returnVal
         for (int x = 0; x < objectSize.x; x++)
         {
             for (int y = 0; y < objectSize.y; y++)
@@ -47,9 +49,6 @@ public class GridData : MonoBehaviour
         return true;
     }
 }
-
-
-
 public class PlacementData
 {
     public List<Vector3Int> occupiedPositions;
@@ -62,3 +61,5 @@ public class PlacementData
         PlacedObjectIndex = placedObejctIndex;
     }
 }
+
+

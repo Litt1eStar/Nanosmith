@@ -9,13 +9,25 @@ public class Inventory_Controller : MonoBehaviour
     public GameObject inventoryItemPrefab;
     public GameObject gridLayoutGroup;
     public PlacementSystem placementSystem;
+    public GameObject inventoryUiPanel;
 
     private PlayerGameplayData playerGameplayData;
     private List<PlayerItemData> inventoryItemList = new List<PlayerItemData>();
     private PlayerItemData currentData;
 
-  
+    private int openCounter = 0;
 
+    private void Awake()
+    {
+        inventoryUiPanel.SetActive(false);
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            OpenInventory();
+        }
+    }
     public void OnClickSelectedObject(PlayerItemData myData)
     {
         if (myData != null)
@@ -27,6 +39,11 @@ public class Inventory_Controller : MonoBehaviour
         {
             Debug.LogError($"myData is Null :: {myData}");
         }
+    }
+
+    public void OpenInventory()
+    {
+        inventoryUiPanel.SetActive(true);
     }
     public void AddItemToPanel()
     {

@@ -10,9 +10,12 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField] InputManager inputManager;
     [SerializeField] Grid grid;
     [SerializeField] private PlayerItemData itemData;
+    [SerializeField] private Vector2 objectSize;
     private int selectedObjectIndex = -1;
 
     [SerializeField] GameObject gridVisualization;
+
+    public Dictionary<Vector3Int, GameObject> sharedData = new();
 
     private GridData inventoryItemData, generateItem;
     private Renderer previewRenderer;
@@ -35,6 +38,14 @@ public class PlacementSystem : MonoBehaviour
         itemData = selectedItemData;
     }
 
+    private void StopPlacement()
+    {
+        gridVisualization.SetActive(false);
+        cellIndicator.SetActive(false);
+        inputManager.OnClicked -= PlaceStructure;
+        inputManager.OnExit -= StopPlacement;
+    }
+
     private void PlaceStructure()
     {
         /*if (inputManager.IsPointerOverUI())
@@ -43,7 +54,7 @@ public class PlacementSystem : MonoBehaviour
         }*/
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        Debug.Log("GridPosition / MousePosition :: " + gridPosition + " | " + mousePosition);
+        //Debug.Log("GridPosition / MousePosition :: " + gridPosition + " | " + mousePosition);
 
         bool placementValidity = CheckPlacementValidity(gridPosition);
         if (placementValidity == false)
@@ -53,13 +64,16 @@ public class PlacementSystem : MonoBehaviour
 
         string itemName = itemData.machineDataBean.itemKey;
         GameObject itemPrefab = Resources.Load<GameObject>("Prefabs/GridObject_prefab/machine/" + itemName + "_prefab");
+        //Debug.Log("ItemToGenerate :: " + itemPrefab);
         GameObject newObj = Instantiate(itemPrefab);
-
-        Debug.Log("Grid Position :: " + grid.CellToWorld(gridPosition));
+        //Debug.Log("Grid Position :: " + grid.CellToWorld(gridPosition));
         newObj.transform.position = grid.CellToWorld(gridPosition) + new Vector3(0, 0, 1);
+        //Debug.Log("Machine Generate OnGrid :: " + newObj.name);
         placedGameObject.Add(newObj);
+
+        //Used to place object on grid based on objectSize
         GridData selectedData = itemData.machineDataBean.usedToType == UsedToType.UsedToFactory ? inventoryItemData : generateItem;
-        selectedData.AddObject(gridPosition, new Vector2(1, 1), int.Parse(itemData.machineDataBean.itemID), placedGameObject.Count - 1);
+        selectedData.AddObject(gridPosition, objectSize, int.Parse(itemData.machineDataBean.itemID), placedGameObject.Count - 1);
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition)
@@ -73,14 +87,7 @@ public class PlacementSystem : MonoBehaviour
         
     }
 
-    private void StopPlacement()
-    {
-        gridVisualization.SetActive(false);
-        cellIndicator.SetActive(false);
-        inputManager.OnClicked -= PlaceStructure;
-        inputManager.OnExit -= StopPlacement;
-    }
-
+  
     private void Update()
     {
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
