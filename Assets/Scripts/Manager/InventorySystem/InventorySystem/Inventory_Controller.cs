@@ -12,8 +12,10 @@ public class Inventory_Controller : MonoBehaviour
     public GameObject inventoryUiPanel;
 
     private PlayerGameplayData playerGameplayData;
-    private List<PlayerItemData> inventoryItemList = new List<PlayerItemData>();
-    private PlayerItemData currentData;
+    public List<PlayerItemData> inventoryItemList = new List<PlayerItemData>();
+    public PlayerItemData currentData;
+
+    private HashSet<int> addedItemId = new HashSet<int>();
 
     private int openCounter = 0;
 
@@ -45,13 +47,18 @@ public class Inventory_Controller : MonoBehaviour
     {
         inventoryUiPanel.SetActive(true);
     }
-    public void AddItemToPanel()
+
+    public void GetItemData()
     {
         playerGameplayData = Main.PlayerManager.CreatePlayerGameplayData();
 
         playerGameplayData.inventory.gameItemListDict.Values.ToList().ForEach(i => {
             inventoryItemList.Add(i);
         });
+    }
+    public void AddItemToPanel()
+    {
+        GetItemData();
 
         inventoryItemList.ForEach(data => {
             if (data != null)
@@ -63,6 +70,8 @@ public class Inventory_Controller : MonoBehaviour
                         Inventory_ObjectController machineObj = go.GetComponent<Inventory_ObjectController>();
                         machineObj.Init(data, placementSystem);
                         machineObj.SetInventory(this);
+                        string itemName = data.machineDataBean.itemKey;
+                        machineObj.gameObject.name = itemName + "_prefab(InventoryPrefab)";
                         break;
                     case ItemType.PowerDevice:
                         Inventory_ObjectController powerObj = go.GetComponent<Inventory_ObjectController>();

@@ -10,6 +10,8 @@ public class Main : MainBase
 
     public static MachineManager MachineManager { get; private set; }
     public static PlayerManager PlayerManager { get; private set; }
+    public static CameraManager CameraManager { get; private set; }
+    public static TimeManager TimeManager { get; private set; }
 
 
     [RuntimeInitializeOnLoadMethod]
@@ -26,5 +28,7 @@ public class Main : MainBase
         InventoryManager = GetManagerComponentFromChild(InventoryManager);
         MachineManager = GetManagerComponentFromChild(MachineManager);
         PlayerManager = GetManagerComponentFromChild(PlayerManager);
+        CameraManager = GetManagerComponentFromChild(CameraManager);
+        TimeManager = GetManagerComponentFromChild(TimeManager);
     }
 }

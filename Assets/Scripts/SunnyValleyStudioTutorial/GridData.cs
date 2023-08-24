@@ -15,6 +15,7 @@ public class GridData : MonoBehaviour
         {
             if (placedObjects.ContainsKey(pos))
             {
+                Debug.Log("This Grid Have Placed");
                 throw new Exception($"Dictionary already contains this position {pos}");
             }
             Debug.Log("PositionToOccupy :: (" + pos.x + "," + pos.y + "," + pos.z +")");

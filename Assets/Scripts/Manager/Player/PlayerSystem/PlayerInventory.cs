@@ -235,6 +235,7 @@ public class PlayerInventory : MonoBehaviour
                         }
                         break;
                 }
+
             }
             else if(playerItems == null)
             {

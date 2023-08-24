@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory_ObjectController : MonoBehaviour
 {
     public Image itemIcon;
+    public TextMeshProUGUI stack;
     private Inventory_Controller inventory;
 
     public PlayerItemData itemData;
@@ -21,6 +23,7 @@ public class Inventory_ObjectController : MonoBehaviour
         if (itemData != null)
         {
             itemIcon.sprite = SpriteSheetUtil.Instance.GetSpriteByName(itemData.machineDataBean.itemKey + "_icon");
+            stack.text = itemData.stack.ToString();
             //selection.SetActive(false);
         }
     }

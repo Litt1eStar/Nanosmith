@@ -6,7 +6,17 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public PlayerInventory playerInventory;
-    
+    public Inventory_Controller inventoryController;
+
+    private void Awake()
+    {
+        playerInventory = GetComponent<PlayerInventory>();
+      
+    }
+    private void Update()
+    {
+        inventoryController = FindObjectOfType<Inventory_Controller>();
+    }
     public void AddPlayerInventory(List<CartMachineryItem_ObjectController> targetItem)
     {
         if (targetItem != null)
@@ -44,6 +54,8 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("TargetItem is NULL");
         }
+
+        inventoryController.AddItemToPanel();
 
         playerInventory.allMachineryResourceDict.Values.ToList().ForEach(itemInCart =>
         {
@@ -114,8 +126,12 @@ public class PlayerManager : MonoBehaviour
             Debug.LogError("return new PlayerGameplayData(playerInventory.CreatePlayerGameplayInventory()) is NULL");
             return null;
         }
-        
-
-     
+             
     }
+
+    public void HandleShopComplete()
+    {
+        inventoryController.AddItemToPanel();
+    }
+
 }
