@@ -10,6 +10,7 @@ public class Inventory_Controller : MonoBehaviour
     public GameObject gridLayoutGroup;
     public PlacementSystem placementSystem;
     public GameObject inventoryUiPanel;
+    public int currentStack;
 
     private PlayerGameplayData playerGameplayData;
     public List<PlayerItemData> inventoryItemList = new List<PlayerItemData>();
@@ -50,6 +51,8 @@ public class Inventory_Controller : MonoBehaviour
 
     public void GetItemData()
     {
+        inventoryItemList.Clear();
+
         playerGameplayData = Main.PlayerManager.CreatePlayerGameplayData();
 
         playerGameplayData.inventory.gameItemListDict.Values.ToList().ForEach(i => {
@@ -59,8 +62,82 @@ public class Inventory_Controller : MonoBehaviour
     public void AddItemToPanel()
     {
         GetItemData();
+        Dictionary<int, int> itemStacks = new Dictionary<int, int>();
+        foreach (PlayerItemData data in inventoryItemList)
+        {
+            if (data != null)
+            {
+                int itemID = int.Parse(data.machineDataBean.itemID);
 
-        inventoryItemList.ForEach(data => {
+                if (itemStacks.ContainsKey(itemID))
+                {
+                    itemStacks[itemID] += 1; // Increment stack count
+                }
+                else
+                {
+                    itemStacks[itemID] = 1; // Initialize stack count
+                }
+            }
+        }
+
+        foreach (KeyValuePair<int, int> kvp in itemStacks)
+        {
+            int itemID = kvp.Key;
+            int stackCount = kvp.Value;
+            currentStack = stackCount;
+
+            PlayerItemData data = inventoryItemList.Find(item => int.Parse(item.machineDataBean.itemID) == itemID);
+            if (data != null)
+            {
+                GameObject go = GameObjectUtil.Instance.AddChild(gridLayoutGroup, inventoryItemPrefab);
+
+                switch (data.itemType)
+                {
+                    case ItemType.Machine:
+                        Inventory_ObjectController machineObj = go.GetComponent<Inventory_ObjectController>();
+                        machineObj.Init(data, placementSystem);
+                        machineObj.SetInventory(this);
+                        string itemNameMachine = data.machineDataBean.itemKey;
+                        machineObj.gameObject.name = itemNameMachine + "_prefab(InventoryPrefab)";
+                        break;
+                    case ItemType.PowerDevice:
+                        Inventory_ObjectController powerObj = go.GetComponent<Inventory_ObjectController>();
+                        powerObj.Init(data, placementSystem);
+                        powerObj.SetInventory(this);
+                        string itemNamePower = data.machineDataBean.itemKey;
+                        powerObj.gameObject.name = itemNamePower + "_prefab(InventoryPrefab)";
+                        break;
+                    case ItemType.Storage:
+                        Inventory_ObjectController storageObj = go.GetComponent<Inventory_ObjectController>();
+                        storageObj.Init(data, placementSystem);
+                        storageObj.SetInventory(this);
+                        string itemNameStorage = data.machineDataBean.itemKey;
+                        storageObj.gameObject.name = itemNameStorage + "_prefab(InventoryPrefab)";
+                        break;
+                    case ItemType.ResearchAndDevelopDevice:
+                        Inventory_ObjectController rdObj = go.GetComponent<Inventory_ObjectController>();
+                        rdObj.Init(data, placementSystem);
+                        rdObj.SetInventory(this);
+                        string itemNameRD = data.machineDataBean.itemKey;
+                        rdObj.gameObject.name = itemNameRD + "_prefab(InventoryPrefab)";
+                        break;
+                    case ItemType.EnvironmentalControlDevice:
+                        Inventory_ObjectController environmentControlObj = go.GetComponent<Inventory_ObjectController>();
+                        environmentControlObj.Init(data, placementSystem);
+                        environmentControlObj.SetInventory(this);
+                        string itemNameENV = data.machineDataBean.itemKey;
+                        environmentControlObj.gameObject.name = itemNameENV + "_prefab(InventoryPrefab)";
+                        break;
+                }
+
+                // Set stack count in the UI
+                //objController.UpdateStackCount(stackCount);
+            }
+        }
+
+
+
+        /*inventoryItemList.ForEach(data => {
             if (data != null)
             {
                 GameObject go = GameObjectUtil.Instance.AddChild(gridLayoutGroup, inventoryItemPrefab);
@@ -95,7 +172,7 @@ public class Inventory_Controller : MonoBehaviour
                         break;
                 }
             } 
-        });
+        });*/
     }
 
     public PlayerItemData InventoryData()

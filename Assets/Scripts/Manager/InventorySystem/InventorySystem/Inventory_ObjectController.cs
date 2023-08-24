@@ -15,6 +15,10 @@ public class Inventory_ObjectController : MonoBehaviour
     public List<PlayerItemData> playerInventoryItem = new List<PlayerItemData>();
     public PlacementSystem placementSystem;
 
+    private void Awake()
+    {
+        inventory = GetComponent<Inventory_Controller>();
+    }
     public void Init(PlayerItemData myData, PlacementSystem placementSys)
     {
         itemData = myData;
@@ -46,4 +50,6 @@ public class Inventory_ObjectController : MonoBehaviour
     {
         inventory = inventoryController;
     }
+
+ 
 }
