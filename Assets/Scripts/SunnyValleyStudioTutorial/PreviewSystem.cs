@@ -70,8 +70,9 @@ public class PreviewSystem : MonoBehaviour
     private void ApplyFeedback(bool validity)
     {
         Color c = validity ? Color.white : Color.red;
-        cellIndicatorRenderer.material.color = c;
+
         c.a = 0.5f;
+        cellIndicatorRenderer.material.color = c;
         previewMaterialInstance.color = c;
     }
 
@@ -82,10 +83,13 @@ public class PreviewSystem : MonoBehaviour
 
     private void MovePreview(Vector3 position)
     {
-        previewObject.transform.position = new Vector3(
-            position.x, 
-            position.y + previewYOffset, 
+        if (previewObject != null)
+        {
+            previewObject.transform.position = new Vector3(
+            position.x,
+            position.y,
             position.z);
 
+        }
     }
 }

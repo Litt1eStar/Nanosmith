@@ -25,6 +25,8 @@ public class MachineBaseClass : ScriptableObject
     public bool isTakenData;
 
 
+
+
     public GameResourceBaseClass _inputResource; // Input Resource have Tag named "GeneralResource"
     public GameObject _outputResource;
    

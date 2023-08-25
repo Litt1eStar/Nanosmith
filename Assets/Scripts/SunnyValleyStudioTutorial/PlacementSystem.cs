@@ -6,36 +6,42 @@ using UnityEngine;
 
 public class PlacementSystem : MonoBehaviour
 {
-    [SerializeField] GameObject mouseIndicator, cellIndicator;
+    [SerializeField] GameObject mouseIndicator;
     [SerializeField] InputManager inputManager;
     [SerializeField] Grid grid;
     [SerializeField] private PlayerItemData itemData;
-    [SerializeField] private Vector2 objectSize;
+    [SerializeField] private Vector2Int objectSize;
     [SerializeField] private GameObject parentInventoryContent;
     private int selectedObjectIndex = -1;
 
     [SerializeField] GameObject gridVisualization;
     [SerializeField] Inventory_Controller inventoryController;
 
-
+    [SerializeField] private PreviewSystem previewSystem;
     public Dictionary<Vector3Int, GameObject> sharedData = new();
 
     private GridData inventoryItemData, generateItem;
-    private Renderer previewRenderer;
+    private Vector3Int lastDetectedPosition = Vector3Int.zero;
+
     private List<GameObject> placedGameObject = new();
     private void Start()
     {
         StopPlacement();
         inventoryItemData = new GridData();
         generateItem = new GridData();
-        previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
     }
 
     public void StartPlacement(PlayerItemData selectedItemData)
     {
+        itemData = selectedItemData;
+        string itemName = itemData.machineDataBean.itemKey;
+        Debug.Log("ItemKey :: " + itemName);
+        GameObject itemPrefab = Resources.Load<GameObject>("Prefabs/GridObject_prefab/machine/" + itemName + "_prefab");
+        Debug.Log("itemPrefab Path :: " + itemPrefab);
+
         StopPlacement();
         gridVisualization.SetActive(true);
-        cellIndicator.SetActive(true);
+        previewSystem.StartShowingPlacementPreview(itemPrefab, itemData.machineDataBean.objectSize);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
         itemData = selectedItemData;
@@ -44,9 +50,10 @@ public class PlacementSystem : MonoBehaviour
     private void StopPlacement()
     {
         gridVisualization.SetActive(false);
-        cellIndicator.SetActive(false);
+        previewSystem.StopShowingPreview();
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
+        lastDetectedPosition = Vector3Int.zero;
     }
 
     private void PlaceStructure()
@@ -72,7 +79,7 @@ public class PlacementSystem : MonoBehaviour
         if (itemData.stack > 0)
         {
             GameObject newObj = Instantiate(itemPrefab);
-            newObj.transform.position = grid.CellToWorld(gridPosition) + new Vector3(0, 0, 1);
+            newObj.transform.position = grid.CellToWorld(gridPosition) + new Vector3(0, 0, 0);
             placedGameObject.Add(newObj);
             itemData.stack--;
             Debug.Log("Current Stack :: " + itemData.stack);
@@ -86,8 +93,9 @@ public class PlacementSystem : MonoBehaviour
         }
         //Used to place object on grid based on objectSize
         GridData selectedData = itemData.machineDataBean.usedToType == UsedToType.UsedToFactory ? inventoryItemData : generateItem;
-        selectedData.AddObject(gridPosition, objectSize, int.Parse(itemData.machineDataBean.itemID), placedGameObject.Count - 1);
-       
+        selectedData.AddObject(gridPosition, itemData.machineDataBean.objectSize, int.Parse(itemData.machineDataBean.itemID), placedGameObject.Count - 1);
+
+        previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), false);
     }
 
     public void RemoveItemInInvnetory()
@@ -115,7 +123,7 @@ public class PlacementSystem : MonoBehaviour
         if (itemData != null)
         {
             GridData selectedData = itemData.machineDataBean.usedToType == UsedToType.UsedToFactory ? inventoryItemData : generateItem;
-            return selectedData.CanPlaceObjectAt(gridPosition, new Vector2(1, 1));
+            return selectedData.CanPlaceObjectAt(gridPosition, itemData.machineDataBean.objectSize);
         }
         else { return false; }
         
@@ -126,11 +134,13 @@ public class PlacementSystem : MonoBehaviour
     {
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+        if (lastDetectedPosition != gridPosition)
+        {
+            bool placementValidity = CheckPlacementValidity(gridPosition);
 
-        bool placementValidity = CheckPlacementValidity(gridPosition);
-        previewRenderer.material.color = placementValidity ? Color.white : Color.red;
-
-        mouseIndicator.transform.position = mousePosition;
-        cellIndicator.transform.position = grid.CellToWorld(gridPosition);
+            mouseIndicator.transform.position = mousePosition;
+            previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), placementValidity);
+            lastDetectedPosition = gridPosition;
+        }
     }
 }

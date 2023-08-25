@@ -6,7 +6,17 @@ public class PowerDeviceDataBean : MachineryDataBean
 {
     public int powerGeneratePerHour; // 12
 
-    public PowerDeviceDataBean(string itemID, string machineName, string machineType, string itemKey, UsedToType usedToType, ItemType itemType, int machinePriceNVC, string machineDescription, int storageSize,int powerGeneratePerHour)
+    public PowerDeviceDataBean(string itemID,
+                               string machineName,
+                               string machineType,
+                               string itemKey,
+                               UsedToType usedToType,
+                               ItemType itemType,
+                               int machinePriceNVC,
+                               string machineDescription,
+                               int storageSize,
+                               Vector2Int objectSize,
+                               int powerGeneratePerHour)
                            : base(itemID,
                                   machineName,
                                   machineType,
@@ -15,7 +25,8 @@ public class PowerDeviceDataBean : MachineryDataBean
                                   itemType,
                                   machinePriceNVC,
                                   machineDescription,
-                                  storageSize
+                                  storageSize,
+                                  objectSize
                                   )
     {
         this.powerGeneratePerHour = powerGeneratePerHour;

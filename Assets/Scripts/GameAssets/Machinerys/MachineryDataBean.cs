@@ -16,7 +16,17 @@ public class MachineryDataBean
     public string machineDescription; // 7
     public int storageSize; // 8
 
-    public MachineryDataBean(string itemID, string machineName, string machineType, string itemKey, UsedToType usedToType, ItemType itemType, int machinePriceNVC, string machineDescription, int storageSize)
+    public Vector2Int objectSize;
+    public MachineryDataBean(string itemID,
+                             string machineName,
+                             string machineType,
+                             string itemKey,
+                             UsedToType usedToType,
+                             ItemType itemType,
+                             int machinePriceNVC,
+                             string machineDescription,
+                             int storageSize,
+                             Vector2Int objectSize)
     {
         this.itemID = itemID;
         this.machineName = machineName;
@@ -27,6 +37,7 @@ public class MachineryDataBean
         this.machinePriceNVC = machinePriceNVC;
         this.machineDescription = machineDescription;
         this.storageSize = storageSize;
+        this.objectSize = objectSize;
     }
 
     //public int stack { get; internal set; }

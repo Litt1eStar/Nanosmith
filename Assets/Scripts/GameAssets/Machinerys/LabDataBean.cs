@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class LabDataBean : MachineryDataBean
 {
-    public LabDataBean(string itemID, string machineName, string machineType, string itemKey, UsedToType usedToType, ItemType itemType, int machinePriceNVC, string machineDescription, int storageSize)
+    public LabDataBean(string itemID,
+                       string machineName,
+                       string machineType,
+                       string itemKey,
+                       UsedToType usedToType,
+                       ItemType itemType,
+                       int machinePriceNVC,
+                       string machineDescription,
+                       int storageSize,
+                       Vector2Int objectSize)
                         : base(itemID,
                                machineName,
                                machineType,
@@ -13,7 +22,8 @@ public class LabDataBean : MachineryDataBean
                                itemType,
                                machinePriceNVC,
                                machineDescription,
-                               storageSize
+                               storageSize,
+                               objectSize
                                )
     {
 

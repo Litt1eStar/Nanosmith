@@ -8,7 +8,19 @@ public class MachineDataBean : MachineryDataBean
     public int machinePowerConsumptionPerHour; // 10
     public float machineDurability; // 11
 
-    public MachineDataBean(string itemID, string machineName, string machineType, string itemKey, UsedToType usedToType, ItemType itemType,int machinePriceNVC, string machineDescription,int storageSize, int machineProductionMultiplier, int machinePowerConsumptionPerHour, float machineDurability) 
+    public MachineDataBean(string itemID,
+                           string machineName,
+                           string machineType,
+                           string itemKey,
+                           UsedToType usedToType,
+                           ItemType itemType,
+                           int machinePriceNVC,
+                           string machineDescription,
+                           int storageSize,
+                           Vector2Int objectSize,
+                           int machineProductionMultiplier,
+                           int machinePowerConsumptionPerHour,
+                           float machineDurability) 
                             : base(itemID,
                                    machineName,
                                    machineType,
@@ -17,7 +29,8 @@ public class MachineDataBean : MachineryDataBean
                                    itemType,
                                    machinePriceNVC,
                                    machineDescription,
-                                   storageSize
+                                   storageSize,
+                                   objectSize
                                    )
     {
         this.machineProductionMultiplier = machineProductionMultiplier;

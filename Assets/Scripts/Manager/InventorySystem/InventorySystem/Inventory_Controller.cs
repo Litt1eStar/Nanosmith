@@ -31,6 +31,11 @@ public class Inventory_Controller : MonoBehaviour
             OpenInventory();
         }
     }
+
+    public void ClosePanel()
+    {
+        inventoryUiPanel.SetActive(false);
+    }
     public void OnClickSelectedObject(PlayerItemData myData)
     {
         if (myData != null)

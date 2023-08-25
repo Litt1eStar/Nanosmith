@@ -69,27 +69,32 @@ public class MachineManager : MonoBehaviour
             float machineDurability = float.Parse(fields[11]);
             int powerGeneratePerHour = int.Parse(fields[12]);
 
+            int x = int.Parse(fields[13]);
+            int y = int.Parse(fields[14]);
+
+            Vector2Int objectSize = new Vector2Int(x,y);
+
 
             MachineryDataBean item;
             switch (itemType)
             {
                 case ItemType.Machine:
-                    item = new MachineDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize, machineProductionMultiplier, machinePowerConsumptionPerHour, machineDurability);
+                    item = new MachineDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize, objectSize,machineProductionMultiplier, machinePowerConsumptionPerHour, machineDurability);
                     break;
                 case ItemType.PowerDevice:
-                    item = new PowerDeviceDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize, powerGeneratePerHour);
+                    item = new PowerDeviceDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize, objectSize, powerGeneratePerHour);
                     break;
                 case ItemType.Storage:
-                    item = new StorageDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize);
+                    item = new StorageDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize, objectSize);
                     break;
                 case ItemType.ResearchAndDevelopDevice:
-                    item = new StorageDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize);
+                    item = new StorageDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize, objectSize);
                     break;
                 case ItemType.EnvironmentalControlDevice:
-                    item = new StorageDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize);
+                    item = new StorageDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize, objectSize);
                     break;
                 default:
-                    item = new MachineryDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize);
+                    item = new MachineryDataBean(itemID, machineName, machineType, itemKey, usedToType, itemType, machinePriceNVC, machineDescription, storageSize, objectSize);
                     break;
             }
             //Debug.Log("item MachineryDataBean created : " + item.itemID + " | " + item.machineName + " | " + item.itemType + " | " + item.storageSize + " | item Price :: " + item.machinePriceNVC);
