@@ -67,4 +67,9 @@ public class GameObjectUtil : MonoSingleton<GameObjectUtil>
         }
     }
 
+    public void DestroyParent(GameObject parent)
+    {
+        Destroy(parent);
+    }
+
 }

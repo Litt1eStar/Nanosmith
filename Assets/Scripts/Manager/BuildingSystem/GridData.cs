@@ -3,14 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridData : MonoBehaviour
+public class GridData
 {
     Dictionary<Vector3Int, PlacementData> placedObjects = new();
 
+    //Add Object to placedObject => {Position of Object, ObjectData}
     public void AddObject(Vector3Int gridPosition, Vector2 objectSize, int ID, int placedObjectIndex)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
         PlacementData data = new PlacementData(positionToOccupy, ID, placedObjectIndex);
+        Debug.Log("placedObjectIndex :: " + placedObjectIndex);
         foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
@@ -20,7 +22,7 @@ public class GridData : MonoBehaviour
             }
             //Debug.Log("PositionToOccupy :: (" + pos.x + "," + pos.y + "," + pos.z +")");
             placedObjects[pos] = data;
-            Debug.Log("placedObject :: " + placedObjects[pos].ID);
+            Debug.Log("placedObjectPosition :: " + placedObjects[pos].occupiedPositions + " | placedObjectIndex :: " + placedObjectIndex);
         }
     }
 
@@ -48,6 +50,24 @@ public class GridData : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public int GetRepresentationIndex(Vector3Int gridPosition)
+    {
+        Debug.Log(placedObjects.Values.ToString());
+        if(placedObjects.ContainsKey(gridPosition) == false)
+        {
+            return -1;
+        }
+        return placedObjects[gridPosition].PlacedObjectIndex;
+    }
+
+    public void RemoveObjectAt(Vector3Int gridPosition)
+    {
+        foreach (var pos in placedObjects[gridPosition].occupiedPositions)
+        {
+            placedObjects.Remove(pos);
+        }
     }
 }
 public class PlacementData

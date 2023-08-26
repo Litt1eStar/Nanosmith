@@ -16,14 +16,16 @@ public class PlacementSystem : MonoBehaviour
 
     [SerializeField] GameObject gridVisualization;
     [SerializeField] Inventory_Controller inventoryController;
+    [SerializeField] private ObjectPlacer objectPlacer;
 
     [SerializeField] private PreviewSystem previewSystem;
     public Dictionary<Vector3Int, GameObject> sharedData = new();
 
     private GridData inventoryItemData, generateItem;
+
     private Vector3Int lastDetectedPosition = Vector3Int.zero;
 
-    private List<GameObject> placedGameObject = new();
+    IBuildingState buildingState;
     private void Start()
     {
         StopPlacement();
@@ -41,24 +43,51 @@ public class PlacementSystem : MonoBehaviour
 
         StopPlacement();
         gridVisualization.SetActive(true);
-        previewSystem.StartShowingPlacementPreview(itemPrefab, itemData.machineDataBean.objectSize);
+        buildingState = new PlacementState(int.Parse(itemData.machineDataBean.itemID),
+                                           grid,
+                                           previewSystem,
+                                           itemData,
+                                           inventoryItemData,
+                                           generateItem,
+                                           objectPlacer);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
-        itemData = selectedItemData;
     }
 
+    public void StartRemoving()
+    {
+        StopPlacement();
+        gridVisualization.SetActive(true);
+        
+        if (inventoryItemData != null)
+        {
+            buildingState = new RemovingState(grid, previewSystem, inventoryItemData, generateItem, objectPlacer);
+            inputManager.OnClicked += PlaceStructure;
+            inputManager.OnExit += StopPlacement;
+        }
+        else
+        {
+            Debug.LogError("InventoryItem is NULL");
+        }
+
+    }
     private void StopPlacement()
     {
+        if (buildingState == null)
+        {
+            return;
+        }
         gridVisualization.SetActive(false);
-        previewSystem.StopShowingPreview();
+        buildingState.EndState();
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
         lastDetectedPosition = Vector3Int.zero;
+        buildingState = null;
     }
 
     private void PlaceStructure()
     {
-        /*if (inputManager.IsPointerOverUI())
+       /* if (inputManager.IsPointerOverUI())
         {
             return;
         }*/
@@ -66,39 +95,11 @@ public class PlacementSystem : MonoBehaviour
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         //Debug.Log("GridPosition / MousePosition :: " + gridPosition + " | " + mousePosition);
 
-        bool placementValidity = CheckPlacementValidity(gridPosition);
-        if (placementValidity == false)
-        {
-            Debug.LogError("Can't Place on that grid :: " + gridPosition);
-            return;
-        }
+        buildingState.OnAction(gridPosition, inventoryController, parentInventoryContent);
 
-        string itemName = itemData.machineDataBean.itemKey;
-        GameObject itemPrefab = Resources.Load<GameObject>("Prefabs/GridObject_prefab/machine/" + itemName + "_prefab");
-        Debug.Log("ItemName :: " + itemData.machineDataBean.machineName + " | stack :: " + itemData.stack);
-        if (itemData.stack > 0)
-        {
-            GameObject newObj = Instantiate(itemPrefab);
-            newObj.transform.position = grid.CellToWorld(gridPosition) + new Vector3(0, 0, 0);
-            placedGameObject.Add(newObj);
-            itemData.stack--;
-            Debug.Log("Current Stack :: " + itemData.stack);
-            if (itemData.stack <= 0)
-            {
-                int index = inventoryController.inventoryItemList.IndexOf(itemData);
-                inventoryController.inventoryItemList.RemoveAt(index);
-                Debug.Log("Complete[Remove Item from List]");
-                RemoveItemInInvnetory();
-            }
-        }
-        //Used to place object on grid based on objectSize
-        GridData selectedData = itemData.machineDataBean.usedToType == UsedToType.UsedToFactory ? inventoryItemData : generateItem;
-        selectedData.AddObject(gridPosition, itemData.machineDataBean.objectSize, int.Parse(itemData.machineDataBean.itemID), placedGameObject.Count - 1);
-
-        previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), false);
     }
 
-    public void RemoveItemInInvnetory()
+  /*  public void RemoveItemInInvnetory()
     {
         List<GameObject> childInParent = GameObjectUtil.Instance.GetChildren(parentInventoryContent);
         string itemToDestroyName = itemData.machineDataBean.machineName;
@@ -116,30 +117,31 @@ public class PlacementSystem : MonoBehaviour
                 return;
             }
         });
-    }
+    }*/
 
-    private bool CheckPlacementValidity(Vector3Int gridPosition)
-    {
-        if (itemData != null)
-        {
-            GridData selectedData = itemData.machineDataBean.usedToType == UsedToType.UsedToFactory ? inventoryItemData : generateItem;
-            return selectedData.CanPlaceObjectAt(gridPosition, itemData.machineDataBean.objectSize);
-        }
-        else { return false; }
+    //private bool CheckPlacementValidity(Vector3Int gridPosition)
+    //{
+    //    if (itemData != null)
+    //    {
+    //        GridData selectedData = itemData.machineDataBean.usedToType == UsedToType.UsedToFactory ? inventoryItemData : generateItem;
+    //        return selectedData.CanPlaceObjectAt(gridPosition, itemData.machineDataBean.objectSize);
+    //    }
+    //    else { return false; }
         
-    }
+    //}
 
   
     private void Update()
     {
+        if (buildingState == null)
+        {
+            return;
+        }
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         if (lastDetectedPosition != gridPosition)
         {
-            bool placementValidity = CheckPlacementValidity(gridPosition);
-
-            mouseIndicator.transform.position = mousePosition;
-            previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), placementValidity);
+            buildingState.UpdateState(gridPosition);
             lastDetectedPosition = gridPosition;
         }
     }
