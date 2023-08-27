@@ -50,11 +50,11 @@ public enum UsedToType
 }
 public enum ItemType
 {
-    GameResourceItem = 0,
-    NanoGameResourceItem = 1,
-    EenrgyItem = 2,
-    SyntheticItem = 3,
-    GenerateRequireItem = 4,
+    GameResourceItem = 0, //
+    NanoGameResourceItem = 1, //
+    EenrgyItem = 2, //
+    SyntheticItem = 3, //
+    GenerateRequireItem = 4, //
     ConsumableItem = 5,
     InFactoryItem = 6,
     InShopItem = 7,

@@ -2,6 +2,7 @@
 
 public class TimeModel 
 {
+    //public int simpleNumber = 10;
 	public DateTime endTime;
 	public TimeSpan remainingTime;
     public Action onFinish;
@@ -23,9 +24,9 @@ public class TimeModel
             return;
 
         remainingTime = endTime - now;
-
         CheckToCallOnChange();
         CheckToCallOnFinish();
+        //UnityEngine.Debug.Log("UpdateRemainingTime :: " + remainingTime);
     }
 
     private void CheckToCallOnChange()

@@ -70,7 +70,6 @@ public class ShopGenerateItem_Controller : MonoBehaviour
                 if (shopItemCart_Controller.CheckoutItemInCart() != null)
                 {
                     Main.PlayerManager.AddPlayerInventoryFromItemShop(shopItemCart_Controller.CheckoutItemInCart());
-                    //Debug.Log("InCart Item :: " + shopItemCart_Controller.CheckoutItemInCart());
                     shopItemCart_Controller.ClearCart();
                 }
                 else

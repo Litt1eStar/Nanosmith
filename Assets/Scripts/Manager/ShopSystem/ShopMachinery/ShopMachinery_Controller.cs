@@ -50,7 +50,7 @@ public class ShopMachinery_Controller : MonoBehaviour
         //Debug.Log("OnClickSelectedObject[ShopMachineryController] :: " + currentData);
         //Debug.Log("Selected Item ID : " + currentData.itemID + " | name : " + currentData.machineName);
     }
-
+    
     public void OnclickSeeMoreInformation(MachineryDataBean itemsDataBean)
     {
 

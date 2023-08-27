@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class MachineUi_Controller : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private ResourceGenerate_Controller generateCrtl;
+
+    [SerializeField] private List<GameObject> inputResource;
+    private GameObject outputResource;
+
+    private void Awake()
     {
-        
+        outputResource = null;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartGenerate()
     {
-        
+        generateCrtl.InputResourceContainer(inputResource);
+        generateCrtl.StartGenerateResource();
     }
 }

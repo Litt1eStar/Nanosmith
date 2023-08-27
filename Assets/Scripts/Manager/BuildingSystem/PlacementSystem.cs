@@ -87,10 +87,11 @@ public class PlacementSystem : MonoBehaviour
 
     private void PlaceStructure()
     {
-       /* if (inputManager.IsPointerOverUI())
+        if (inputManager.IsPointerOverUIElement())
         {
+            Debug.Log("Your Cursor is Over UI");
             return;
-        }*/
+        }
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         //Debug.Log("GridPosition / MousePosition :: " + gridPosition + " | " + mousePosition);
@@ -99,7 +100,7 @@ public class PlacementSystem : MonoBehaviour
 
     }
 
-  /*  public void RemoveItemInInvnetory()
+  /* public void RemoveItemInInvnetory()
     {
         List<GameObject> childInParent = GameObjectUtil.Instance.GetChildren(parentInventoryContent);
         string itemToDestroyName = itemData.machineDataBean.machineName;

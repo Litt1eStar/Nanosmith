@@ -107,7 +107,8 @@ public class PlacementState :  IBuildingState
             if (i.name == itemData.machineDataBean.itemKey + "_prefab(InventoryPrefab)")
             {
                 Debug.Log(i.name);
-                GameObjectUtil.Instance.DestroyParent(i);
+                GameObject.Destroy(i.gameObject);
+                //GameObjectUtil.Instance.DestroyParent(i);
                 Debug.Log("Destroy Complete");
             }
             else

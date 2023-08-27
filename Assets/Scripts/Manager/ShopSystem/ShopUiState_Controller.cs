@@ -7,6 +7,7 @@ public class ShopUiState_Controller : MonoBehaviour
     [SerializeField] private GameObject shopMachineryItemPanel;
     [SerializeField] private GameObject shopGenerateItemPanel;
     [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private GameObject inventoryItemPanel;
     public bool canOpen;
     private void Awake()
     {
@@ -46,6 +47,18 @@ public class ShopUiState_Controller : MonoBehaviour
     public void TurnOffInventoryPanel()
     {
         inventoryPanel.SetActive(false);
+        canOpen = true;
+    }
+
+    public void TurnOnItemInventoryPanel()
+    {
+        inventoryItemPanel.SetActive(true);
+        canOpen = false;
+    }
+
+    public void TurnOffItemInventoryPanel()
+    {
+        inventoryItemPanel.SetActive(false);
         canOpen = true;
     }
 }

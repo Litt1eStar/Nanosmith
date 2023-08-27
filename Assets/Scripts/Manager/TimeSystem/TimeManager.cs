@@ -9,6 +9,9 @@ public class TimeManager : MonoSingleton<TimeManager>
 
 	public static GameManagerBase GameManager { get; set; }
 
+	public delegate void TimeModelUpdateRemainingTime(DateTime now);
+	public TimeModelUpdateRemainingTime onTimeModelUpdateRemainingTime;
+
 	public DateTime Now { get; set; }
 	private TimeSpan deltaNowTimeSpan;
 
@@ -44,6 +47,7 @@ public class TimeManager : MonoSingleton<TimeManager>
 	{
 		timeModels = new List<TimeModel>();
 		StartCoroutine("AllUpdateTime");
+		//Debug.Log("TimeManager Start timeModels :: " + timeModels);
 	}
 
 	void Update()
@@ -61,7 +65,10 @@ public class TimeManager : MonoSingleton<TimeManager>
 		for (;;)
 		{
 			if (onReadyToCounter)
-				timeModels.ForEach(timeModel => timeModel.UpdateRemainingTime(Now));
+			{
+				onTimeModelUpdateRemainingTime?.Invoke(Now);
+				//timeModels.ForEach(timeModel => timeModel.UpdateRemainingTime(Now));
+			}
 
 			yield return new WaitForSeconds(0.1f);
 		}
@@ -71,6 +78,10 @@ public class TimeManager : MonoSingleton<TimeManager>
 	{
 		timeModel.onFinish += () => RemoveTimeModel(timeModel);
 		timeModels.Add(timeModel);
+		onTimeModelUpdateRemainingTime += timeModel.UpdateRemainingTime;
+		//int someNumber = timeModel.simpleNumber;
+		/*Debug.Log("TimeManager AddTimeModel timeModel List :: " + timeModels);
+		Debug.Log("TimeManager AddTimeModel timeModel :: " + timeModel);*/
 	}
 
 	public void AddTimeModelList(List<TimeModel> timeModelList)
@@ -80,6 +91,7 @@ public class TimeManager : MonoSingleton<TimeManager>
 
 	public void RemoveTimeModel(TimeModel timeModel)
 	{
+		onTimeModelUpdateRemainingTime -= timeModel.UpdateRemainingTime;
 		timeModels.Remove(timeModel);
 	}
 

@@ -16,13 +16,13 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
                 {
                     instance = (T)FindObjectOfType(typeof(T));
 
-                    if (FindObjectOfType(typeof(T)))
+                    /*if (FindObjectOfType(typeof(T)))
                     {
                         Debug.LogError("[MonoSingleton] Something went really wrong" +
                                        " - there should never be more than 1 singleton!" +
                                        " Reopenning the scene might fix it");
                         return instance;
-                    }
+                    }*/
 
                     if (instance == null)
                     {

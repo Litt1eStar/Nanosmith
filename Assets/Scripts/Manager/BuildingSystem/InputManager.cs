@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class InputManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private LayerMask placementLayermask;
     [SerializeField] private CameraManager cameraManager;
     [SerializeField] private PlacementSystem placementSystem;
+    [SerializeField] private LayerMask UIlayer;
 
     private Camera factoryBuildingModeCamera;
     private Camera factoryGameplayModeCamera;
@@ -19,12 +21,15 @@ public class InputManager : MonoBehaviour
     private bool isGameplayCamActive;
     public event Action OnClicked, OnExit;
 
+
     private void Awake()
     {
         placementSystem = GetComponent<PlacementSystem>();
     }
     private void Start()
     {
+        UIlayer = LayerMask.NameToLayer("UI");
+
         factoryBuildingModeCamera = cameraManager.FactoryBuildingCamera();
         factoryGameplayModeCamera = cameraManager.FactoryGameplayCamera();
         factoryBuildingModeCamera.enabled = true;
@@ -32,9 +37,6 @@ public class InputManager : MonoBehaviour
     }
     public void Update()
     {
-        CameraTransition(); // Switch Camera between GameplayMode and BuildingMode
-        CheckCameraState(); // Check currentCamera Value
-
         if (Input.GetMouseButtonDown(0))
         {
             OnClicked?.Invoke();
@@ -44,10 +46,40 @@ public class InputManager : MonoBehaviour
         {
             OnExit?.Invoke();
         }
+
+        Debug.Log(IsPointerOverUIElement() ? "Over UI" : "Not Over UI");
     }
 
-    public bool IsPointerOverUI()
-        => EventSystem.current.IsPointerOverGameObject();
+
+    public bool IsPointerOverUIElement()
+    {
+        return IsPointerOverUIElement(GetEventSystemRaycastResults());
+    }
+
+    private bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults)
+    {
+        for (int index = 0; index < eventSystemRaysastResults.Count; index++)
+        {
+            RaycastResult curRaysastResult = eventSystemRaysastResults[index];
+            if (curRaysastResult.gameObject.layer == UIlayer)
+                return true;
+        }
+        return false;
+    }
+
+    static List<RaycastResult> GetEventSystemRaycastResults()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raysastResults);
+        return raysastResults;
+    }
+
+
+
+/*    public bool IsPointerOverUI()
+        => EventSystem.current.IsPointerOverGameObject();*/
 
     public Vector3 GetSelectedMapPosition()
     {
@@ -64,39 +96,5 @@ public class InputManager : MonoBehaviour
     }
 
 
-    public void CameraTransition()
-    {
-        if (Input.GetKeyDown(KeyCode.L) && isGameplayCamActive) //Switch to Factory Building Mode
-        {
-            factoryGameplayModeCamera.enabled = false;
-            factoryBuildingModeCamera.enabled = true;
-
-            currentCamera = factoryBuildingModeCamera;
-
-
-        }
-        else if (Input.GetKeyDown(KeyCode.L) && !isGameplayCamActive) //Switcch to Gameplay Mode
-        {
-            factoryBuildingModeCamera.enabled = false;
-            factoryGameplayModeCamera.enabled = true;
-
-            currentCamera = factoryGameplayModeCamera;
-
-        }
-    }
-
-    public void CheckCameraState()
-    {
-        if (currentCamera == factoryBuildingModeCamera)
-        {
-            isGameplayCamActive = false;
-            Debug.Log("--------------------------BuildingMode is Active--------------------------");
-        }
-        else if(currentCamera == factoryGameplayModeCamera)
-        {
-            isGameplayCamActive = true;
-            Debug.Log("--------------------------GameplayMode is Active--------------------------");
-        }
-    }
-
+  
 }

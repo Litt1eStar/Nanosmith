@@ -30,12 +30,12 @@ public class PlayerInventory : MonoBehaviour
             if (playerGameplayInventoryDict.ContainsKey(i))
             {
                 playerGameplayInventoryDict[i] = playerItem;
-                //Debug.Log("Add Data to PlayerInventory :: " + playerGameplayInventoryDict);
+                Debug.Log("Add Data to PlayerInventory :: " + playerGameplayInventoryDict);
             }
             else
             {
                 playerGameplayInventoryDict.Add(i, playerItem);
-                //Debug.LogError(playerGameplayInventoryDict);
+                Debug.LogError("Add Data to PlayerInventory [else condition] ::  " + playerGameplayInventoryDict);
             }
             i++;
         }
@@ -43,6 +43,30 @@ public class PlayerInventory : MonoBehaviour
         //Debug.Log(playerGameplayInventoryDict);
         return new PlayerGameplayInventory(playerGameplayInventoryDict);
        
+    }
+
+    public PlayerGameplayInventory CreatePlayerGameplayItemInventory()
+    {
+        Dictionary<int, PlayerItemData> playerGameplayInventoryDict = new Dictionary<int, PlayerItemData>();
+        int i = 0;
+        foreach (PlayerItemData playerItem in allItemResourceDict.Values)
+        {
+            if (playerGameplayInventoryDict.ContainsKey(i))
+            {
+                playerGameplayInventoryDict[i] = playerItem;
+                Debug.Log("Add Data to PlayerInventory :: " + playerGameplayInventoryDict);
+            }
+            else
+            {
+                playerGameplayInventoryDict.Add(i, playerItem);
+                Debug.LogError("Add Data to PlayerInventory [else condition] ::  " + playerGameplayInventoryDict);
+            }
+            i++;
+        }
+
+        //Debug.Log(playerGameplayInventoryDict);
+        return new PlayerGameplayInventory(playerGameplayInventoryDict);
+
     }
     public void InfoPlayerInventoryTextConsole()
     {
@@ -271,6 +295,7 @@ public class PlayerInventory : MonoBehaviour
                     else
                     {
                         allItemResourceDict.Add(item.itemsDataBean, item);
+                        Debug.Log("PlayerInventory Add Item :: itemName[" + item.itemsDataBean.itemName + "]" + " | " + item.stack);
                     }
                 }
                 else
@@ -295,7 +320,7 @@ public class PlayerInventory : MonoBehaviour
                         if (allItemResourceDict.ContainsKey(playerItems.itemsDataBean))
                         {
                             generateItemResourceDict[playerItems] = (GenerateRequiredItemDataBean)playerItems.itemsDataBean;
-                            Debug.Log("Machine Item Object[Machine] :: " + generateItemResourceDict[playerItems].itemName + " | stack :: " + playerItems.stack); //Isn't work for now
+                            Debug.Log("Machine Item Object[Machine] :: " + generateItemResourceDict[playerItems].itemName + " | stack :: " + playerItems.stack); //Isn't work for now   
                             break;
                         }
                         else
