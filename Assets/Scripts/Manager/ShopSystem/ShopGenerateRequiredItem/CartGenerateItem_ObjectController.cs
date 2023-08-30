@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,11 +7,11 @@ using UnityEngine.UI;
 public class CartGenerateItem_ObjectController : MonoBehaviour
 {
     public Image itemIcon;
-
+    public TextMeshProUGUI stackCountText;
     public ItemsDataBean itemData;
 
     private CartGenerateItem_Controller itemCartController;
-
+    public int stackCount;
     private string machinePriceFormat;
     public void InitItemShop(ItemsDataBean myData)
     {
@@ -20,8 +21,32 @@ public class CartGenerateItem_ObjectController : MonoBehaviour
             itemIcon.sprite = SpriteSheetUtil.Instance.GetSpriteByName(itemData.itemKey + "_icon");
             //selection.SetActive(false);
         }
+        UpdateUI();
     }
 
+    private void UpdateUI()
+    {
+        stackCountText.text = stackCount.ToString();
+    }
+
+    public void IncreaseStack()
+    {
+        stackCount++;
+        UpdateUI();
+    }
+
+    public void RemoveFromCart()
+    {
+        if (stackCount > 1) // If stack count is more than 1, just decrease the stack count
+        {
+            stackCount--;
+            UpdateUI();
+        }
+        else // If stack count is 1, remove the item from the cart
+        {
+            itemCartController.RemoveItemFromCart(this);
+        }
+    }
     public void OnClickSelectedObject()//*******
     {
         Debug.Log("OnClickSelectedObject[CartMachineryItemController] is ACTIVE");

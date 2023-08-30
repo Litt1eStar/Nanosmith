@@ -83,7 +83,24 @@ public class InventoryManager : MonoBehaviour
 
             string itemRecipeKey03 = fields[15] == "null" ? null : fields[15];
             int itemRecipeValue03 = int.Parse(fields[16]);
-           
+
+            Dictionary<string, int> itemRecipe = new Dictionary<string, int>();
+            if (!string.IsNullOrEmpty(itemRecipeKey01))
+            {
+                itemRecipe.Add(itemRecipeKey01, itemRecipeValue01);
+            }
+
+            if (!string.IsNullOrEmpty(itemRecipeKey02))
+            {
+                itemRecipe.Add(itemRecipeKey02, itemRecipeValue02);
+            }
+
+            if (!string.IsNullOrEmpty(itemRecipeKey03))
+            {
+                itemRecipe.Add(itemRecipeKey03, itemRecipeValue03);
+            }
+
+
             //Debug.Log("itemRecipe :: [ItemKey01] " + itemRecipeKey01 + " + [ItemKey02] " + itemRecipeKey02 + " + [ItemKey03] " + itemRecipeKey03);
             #endregion
             string itemSeasonalPopularity = fields[17];
@@ -95,26 +112,98 @@ public class InventoryManager : MonoBehaviour
             {
                 // 0,1,2,3,4 => 0(GameResourceItemDataBean) 1,2,3(SpecialEventResourceDataBean) I will change it later for 1 , 2 , 3
                 case ItemType.GameResourceItem:
-                    item = new GameResourceItemDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarity, itemRarityDisplay, itemMarginNVC, itemProductionRatePerMinute, itemSeasonalPopularity, itemRecipeKey01, itemRecipeKey02, itemRecipeKey03, itemRecipeValue01, itemRecipeValue02, itemRecipeValue03);
+                    item = new GameResourceItemDataBean(itemID,
+                                                        itemName,
+                                                        itemKey,
+                                                        itemGenre,
+                                                        usedToType,
+                                                        itemType,
+                                                        itemDescription,
+                                                        itemRarity,
+                                                        itemRarityDisplay,
+                                                        itemMarginNVC,
+                                                        itemProductionRatePerMinute,
+                                                        itemSeasonalPopularity,
+                                                        itemRecipe);
                     break;
                 case ItemType.NanoGameResourceItem:
-                    item = new SpecialEventResourceItemDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarity, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemProductionRatePerMinute);
+                    item = new SpecialEventResourceItemDataBean(itemID,
+                                                                itemName,
+                                                                itemKey,
+                                                                itemGenre,
+                                                                usedToType,
+                                                                itemType,
+                                                                itemDescription,
+                                                                itemRarity,
+                                                                itemRarityDisplay,
+                                                                itemMarginNVC,
+                                                                itemSeasonalPopularity,
+                                                                itemProductionRatePerMinute,
+                                                                itemRecipe);
                     break;
 
                 case ItemType.EenrgyItem:
-                    item = new SpecialEventResourceItemDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarity, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemProductionRatePerMinute);
+                    item = new SpecialEventResourceItemDataBean(itemID,
+                                                                itemName,
+                                                                itemKey,
+                                                                itemGenre,
+                                                                usedToType,
+                                                                itemType,
+                                                                itemDescription,
+                                                                itemRarity,
+                                                                itemRarityDisplay,
+                                                                itemMarginNVC,
+                                                                itemSeasonalPopularity,
+                                                                itemProductionRatePerMinute,
+                                                                itemRecipe);
                     break;
 
                 case ItemType.SyntheticItem:
-                    item = new SpecialEventResourceItemDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarity, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemProductionRatePerMinute);
+                    item = new SpecialEventResourceItemDataBean(itemID,
+                                                                itemName,
+                                                                itemKey,
+                                                                itemGenre,
+                                                                usedToType,
+                                                                itemType,
+                                                                itemDescription,
+                                                                itemRarity,
+                                                                itemRarityDisplay,
+                                                                itemMarginNVC,
+                                                                itemSeasonalPopularity,
+                                                                itemProductionRatePerMinute,
+                                                                itemRecipe);
                     break;
 
                 case ItemType.GenerateRequireItem:
-                    item = new GenerateRequiredItemDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarity, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemProductionRatePerMinute);
+                    item = new GenerateRequiredItemDataBean(itemID,
+                                                            itemName,
+                                                            itemKey,
+                                                            itemGenre,
+                                                            usedToType,
+                                                            itemType,
+                                                            itemDescription,
+                                                            itemRarity,
+                                                            itemRarityDisplay,
+                                                            itemMarginNVC,
+                                                            itemSeasonalPopularity,
+                                                            itemProductionRatePerMinute,
+                                                            itemRecipe);
                     break;
 
                 default:
-                    item = new ItemsDataBean(itemID, itemName, itemKey, itemGenre, usedToType, itemType, itemDescription, itemRarity, itemRarityDisplay, itemMarginNVC, itemSeasonalPopularity, itemProductionRatePerMinute);
+                    item = new ItemsDataBean(itemID,
+                                             itemName,
+                                             itemKey,
+                                             itemGenre,
+                                             usedToType,
+                                             itemType,
+                                             itemDescription,
+                                             itemRarity,
+                                             itemRarityDisplay,
+                                             itemMarginNVC,
+                                             itemSeasonalPopularity,
+                                             itemProductionRatePerMinute,
+                                             itemRecipe);
                     break;
             }
             //Debug.Log("item ItemDataBean created : " + item.itemID + " | " + item.itemName + " | itemMargin :: " + item.itemMarginNVC);

@@ -16,10 +16,23 @@ public class ItemsDataBean
     public string itemSeasonalPopularity; // field 17
     public string itemDescription; // field 18
     public int itemProductionRatePerMinute;
+    public Dictionary<string, int> itemRecipe = new Dictionary<string, int>();
 
 
 
-    public ItemsDataBean(int itemID, string itemName, string itemKey, string[] itemGenre, UsedToType usedToType,ItemType itemType, string itemDescription, int itemRarity, string itemRarityDisplay, float itemMarginNVC, string itemSeasonalPopularity, int itemProductionRatePerMinute)
+    public ItemsDataBean(int itemID,
+                         string itemName,
+                         string itemKey,
+                         string[] itemGenre,
+                         UsedToType usedToType,
+                         ItemType itemType,
+                         string itemDescription,
+                         int itemRarity,
+                         string itemRarityDisplay,
+                         float itemMarginNVC,
+                         string itemSeasonalPopularity,
+                         int itemProductionRatePerMinute,
+                         Dictionary<string, int> itemRecipe)
     {
         this.itemID = itemID;
         this.itemName = itemName;
@@ -33,6 +46,6 @@ public class ItemsDataBean
         this.itemMarginNVC = itemMarginNVC;
         this.itemSeasonalPopularity = itemSeasonalPopularity;
         this.itemProductionRatePerMinute = itemProductionRatePerMinute;
+        this.itemRecipe = itemRecipe;
     }
-
 }

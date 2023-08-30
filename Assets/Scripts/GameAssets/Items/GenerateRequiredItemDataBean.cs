@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class GenerateRequiredItemDataBean : ItemsDataBean
 {
-    public GenerateRequiredItemDataBean(int itemID, string itemName, string itemKey, string[] itemGenre, UsedToType usedToType, ItemType itemType, string itemDescription, int itemRarity, string itemRarityDisplay, float itemMarginNVC, string itemSeasonalPopularity, int itemProductionRatePerMinute) :
+    public GenerateRequiredItemDataBean(int itemID,
+                                        string itemName,
+                                        string itemKey,
+                                        string[] itemGenre,
+                                        UsedToType usedToType,
+                                        ItemType itemType,
+                                        string itemDescription,
+                                        int itemRarity,
+                                        string itemRarityDisplay,
+                                        float itemMarginNVC,
+                                        string itemSeasonalPopularity,
+                                        int itemProductionRatePerMinute,
+                                        Dictionary<string, int> itemRecipe) :
                                          base(itemID,
                                              itemName,
                                              itemKey,
@@ -16,7 +28,8 @@ public class GenerateRequiredItemDataBean : ItemsDataBean
                                              itemRarityDisplay,
                                              itemMarginNVC,
                                              itemSeasonalPopularity,
-                                             itemProductionRatePerMinute
+                                             itemProductionRatePerMinute,
+                                             itemRecipe
                                              )
     {
         this.itemID = itemID;
@@ -30,6 +43,6 @@ public class GenerateRequiredItemDataBean : ItemsDataBean
         this.itemRarityDisplay = itemRarityDisplay;
         this.itemMarginNVC = itemMarginNVC;
         this.itemSeasonalPopularity = itemSeasonalPopularity;
-
+        this.itemRecipe = itemRecipe;
     }
 }

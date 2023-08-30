@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ShopGenerateItem_Controller : MonoBehaviour
 {
@@ -11,13 +13,16 @@ public class ShopGenerateItem_Controller : MonoBehaviour
     public GameObject shopItemGridLayout;
     public ShopGenerateItemDesc_Controller shopGeneratedItemDescriptionController;
 
+    public Slider buyAmountSlider;
+    public TextMeshProUGUI buyAmountText;
+
     public delegate void SelectShopItemsObject(ItemsDataBean itemsDataBean);
     public SelectShopItemsObject selectShopItemsObject;
 
     public CartGenerateItem_Controller shopItemCart_Controller;
 
     private ItemsDataBean currentData;
-    private ItemsDataBean openDescItemData;
+    private ItemsDataBean itemData;
 
     public int openCounter = 0;
 
@@ -33,6 +38,15 @@ public class ShopGenerateItem_Controller : MonoBehaviour
     {
         ShopPanel.SetActive(false);
         shopGeneratedItemDescriptionController.CloseDescriptionPanel();
+
+        buyAmountSlider.onValueChanged.AddListener(UpdateBuyAmountText);
+        UpdateBuyAmountText(1);
+    }
+
+    private void UpdateBuyAmountText(float value)
+    {
+        int buyAmount = Mathf.RoundToInt(value); // Round the float value to an integer
+        buyAmountText.text = "Buy Amount: " + buyAmount;
     }
 
     private void Update()
@@ -52,10 +66,14 @@ public class ShopGenerateItem_Controller : MonoBehaviour
 
     public void AddToCart()
     {
-        Debug.Log("currentData :: " + openDescItemData); // null
-        if (openDescItemData != null)
+        int buyAmount = Mathf.RoundToInt(buyAmountSlider.value);
+        Debug.Log("currentData :: " + itemData); // null
+        if (itemData != null)
         {
-            shopItemCart_Controller.AddToCart(openDescItemData, this);
+            for (int i = 0; i < buyAmount; i++)
+            {
+                shopItemCart_Controller.AddToCart(itemData, this);
+            }
             //Debug.Log("Data :: " + currentData + " | ShopCartController :: " + this);
         }
     }
@@ -83,7 +101,7 @@ public class ShopGenerateItem_Controller : MonoBehaviour
     public void OnClickSelectedObject(ItemsDataBean itemsDataBean)
     {
         currentData = itemsDataBean;
-        openDescItemData = currentData;
+        itemData = currentData;
         //Debug.Log("currentData[OnClickSelectedObject] :: " + currentData);
         selectShopItemsObject?.Invoke(currentData);
 

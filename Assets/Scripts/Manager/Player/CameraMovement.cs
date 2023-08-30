@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Camera mainCam;
+    [SerializeField] private InputManager _inputManager;
 
     [SerializeField] private float zoomLevel;
     [SerializeField] private float zoomMultiplier = 4f;
@@ -21,6 +22,10 @@ public class CameraMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (_inputManager.IsPointerOverUIElement())
+        {
+            return;
+        }
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         zoomLevel -= scroll * zoomMultiplier;
         zoomLevel = Mathf.Clamp(zoomLevel, minZoomLevel, maxZoom);

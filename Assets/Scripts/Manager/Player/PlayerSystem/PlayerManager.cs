@@ -80,7 +80,7 @@ public class PlayerManager : MonoBehaviour
                 {
                     if (itemInCart.itemData != null)
                     {
-                        playerItemList.Add(new PlayerItemData(itemInCart.itemData));
+                        playerItemList.Add(new PlayerItemData(itemInCart.itemData, itemInCart.stackCount + 1));
                         Debug.Log("Type of targetItem[AddPlayerInventory] :: " + itemInCart.itemData.itemName); // In this line, type of data = CartMachineryItemController
                     }
                     else

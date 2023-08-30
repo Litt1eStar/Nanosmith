@@ -7,7 +7,10 @@ public class GridData
 {
     Dictionary<Vector3Int, PlacementData> placedObjects = new();
 
-    //Add Object to placedObject => {Position of Object, ObjectData}
+    //Add Object to placedObject => {Position of Object, ObjectData} 
+    // ((0,0),A), ((1,0),A), ((2,0),A)
+    // ((0,1),A), ((1,1),A), ((2,1),A)
+    // ((0,2),A), ((1,2),A), ((2,2),A)
     public void AddObject(Vector3Int gridPosition, Vector2 objectSize, int ID, int placedObjectIndex)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
@@ -28,7 +31,7 @@ public class GridData
 
     public List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2 objectSize)
     {
-        List<Vector3Int> returnVal = new(); // gridPosition = (3, 0 ,2) : objectSize = (2,2) => returnVal
+        List<Vector3Int> returnVal = new();
         for (int x = 0; x < objectSize.x; x++)
         {
             for (int y = 0; y < objectSize.y; y++)

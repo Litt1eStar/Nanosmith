@@ -31,12 +31,21 @@ public class CartGenerateItem_Controller : MonoBehaviour
     {
         if (targetItem != null)
         {
-            GameObject go = GameObjectUtil.Instance.AddChild(cartItemGridLayout, itemObjectListPrefab);
-            CartGenerateItem_ObjectController itemObj = go.GetComponent<CartGenerateItem_ObjectController>(); // get component of CartMachineryItemController
-            itemObj.InitItemShop(targetItem);// Init itemObj by using value form targetItem
-            itemObj.RegisterShopItemController(this);
+            CartGenerateItem_ObjectController existingItem = itemsInCartList.Find(item => item.itemData == targetItem);
+            if (existingItem != null)
+            {
+                existingItem.IncreaseStack(); // Increase the stack count of existing item
+            }
+            else
+            {
+                GameObject go = GameObjectUtil.Instance.AddChild(cartItemGridLayout, itemObjectListPrefab);
+                CartGenerateItem_ObjectController itemObj = go.GetComponent<CartGenerateItem_ObjectController>(); // get component of CartMachineryItemController
+                itemObj.InitItemShop(targetItem);// Init itemObj by using value form targetItem
+                itemObj.RegisterShopItemController(this);
 
-            itemsInCartList.Add(itemObj);
+                itemsInCartList.Add(itemObj);
+            }
+            
             CalculateTotal();
         }
     }

@@ -18,12 +18,20 @@ public class InventoryItem_Controller : MonoBehaviour
         //inventoryUiPanel.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventoryUiPanel.SetActive(true);
+        }
+    }
     public void OnClickSelectedObject(PlayerItemData myData)
     {
         if (myData != null)
         {
             currentData = myData;
             Debug.Log("OnclickSelectedObject currentData :: " + currentData.itemsDataBean.itemName);
+            Debug.Log("OnclickSelectedObject currentData Stack :: " + currentData.stack);
         }
         else
         {
@@ -152,9 +160,14 @@ public class InventoryItem_Controller : MonoBehaviour
         }
     }
 
-    public PlayerItemData InventoryData()
+    public PlayerItemData InventoryItemData()
     {
         Debug.Log("InventoryData is SendToGrid");
         return currentData;
+    }
+
+    public List<PlayerItemData> InventoryDataList()
+    {
+        return inventoryItemList;
     }
 }
