@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopUiState_Controller : MonoBehaviour
+public class UI_Controller : MonoBehaviour
 {
     [SerializeField] private GameObject shopMachineryItemPanel;
     [SerializeField] private GameObject shopGenerateItemPanel;

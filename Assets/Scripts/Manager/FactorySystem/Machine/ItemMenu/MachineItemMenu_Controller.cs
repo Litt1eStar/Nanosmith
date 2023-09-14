@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MachineItemMenu_Controller : MonoBehaviour
 {
+    [SerializeField] private InventoryItem_Controller inventoryItemController;
     public GameObject itemMenuPanel;
     public GameObject itemObjectListPrefab;
     public GameObject itemMenuGridLayout;
@@ -75,7 +76,7 @@ public class MachineItemMenu_Controller : MonoBehaviour
             OutputItemData_ObjectController outputObj = go.GetComponent<OutputItemData_ObjectController>();
             outputObj.Init(outputData);
             outputObj.RegisterMachineMenuController(this);
-            resourceGenerateCrtl.Generate(outputData);
+            resourceGenerateCrtl.RecipeMapping(outputData);
         }
     }
     public void OnClickSelectedOutput(ItemsDataBean data)
@@ -86,7 +87,10 @@ public class MachineItemMenu_Controller : MonoBehaviour
     
     public void RemoveItemFromOutputSlot()
     {
-        GameObjectUtil.Instance.DestroyAllChildren(outputSlot);
+        GameObjectUtil.Instance.DestroyAllChildren(outputSlot);// Clear View
+        resourceGenerateCrtl._currentInputItemList.Clear(); //
+        resourceGenerateCrtl.listToCheck.Clear();
+        Debug.Log("RemoveItemFromOutputSlot :: " + resourceGenerateCrtl._currentInputItemList.Count);
         outputData = null;
     }
 

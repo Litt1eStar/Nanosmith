@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2502920853207102175}
   m_Layer: 0
   m_Name: battery_prefab
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -289,7 +289,7 @@ public class PlayerInventory : MonoBehaviour
                 {
                     if (allItemResourceDict.ContainsKey(item.itemsDataBean))
                     {
-                        allItemResourceDict[item.itemsDataBean].stack += 1;
+                        allItemResourceDict[item.itemsDataBean].stack += item.stack;
                         //Debug.Log("Item Name :: " + item.machineDataBean.machineName + "Stack is increased to " + allMachineryResourceDict[item.machineDataBean].stack + " | Type of Item :: [" + item + "]");
                     }
                     else
@@ -343,6 +343,11 @@ public class PlayerInventory : MonoBehaviour
         Debug.Log("----------------------------------------------------------------");
     }
 
+    public List<ItemsDataBean> AllItemsList()
+    {
+        return allItemResourceDict.Keys.ToList();
+    }
 
+    
 }
     

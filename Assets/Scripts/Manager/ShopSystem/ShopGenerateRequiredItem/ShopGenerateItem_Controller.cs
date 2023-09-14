@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,7 +47,7 @@ public class ShopGenerateItem_Controller : MonoBehaviour
     private void UpdateBuyAmountText(float value)
     {
         int buyAmount = Mathf.RoundToInt(value); // Round the float value to an integer
-        buyAmountText.text = "Buy Amount: " + buyAmount;
+        buyAmountText.text = buyAmount.ToString();
     }
 
     private void Update()
@@ -75,6 +76,19 @@ public class ShopGenerateItem_Controller : MonoBehaviour
                 shopItemCart_Controller.AddToCart(itemData, this);
             }
             //Debug.Log("Data :: " + currentData + " | ShopCartController :: " + this);
+            //////////////////////////////
+            PlayerItemData existingItem = Main.PlayerManager.playerInventory.allItemResourceDict.Values.FirstOrDefault(data => data.itemsDataBean.itemID == itemData.itemID);
+
+            if (existingItem != null)
+            {
+                existingItem.stack += 1; // Increment stack count.
+            }
+            else
+            {
+                // If the item is not in the inventory, create a new entry.
+                PlayerItemData newItem = new PlayerItemData(itemData, buyAmount); // Assuming initial stack is 1.
+                //Main.PlayerManager.playerInventory.AddPlayerInventoryGenerateItem(new List<PlayerItemData> { newItem });
+            }
         }
     }
 
@@ -97,6 +111,7 @@ public class ShopGenerateItem_Controller : MonoBehaviour
                 }
             }
         }
+
     }
     public void OnClickSelectedObject(ItemsDataBean itemsDataBean)
     {

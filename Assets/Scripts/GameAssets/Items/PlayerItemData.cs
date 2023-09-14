@@ -27,4 +27,8 @@ public class PlayerItemData
         stack = _stack;
     }
 
+    public void AddToStack(int amount)
+    {
+        stack += amount;
+    }
 }

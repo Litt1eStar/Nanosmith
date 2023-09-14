@@ -84,4 +84,17 @@ public class InventoryModelContainer : MonoBehaviour
     {
         return gameResourceItemDict.Values.ToList();
     }
+
+    public ItemsDataBean GetItemDataByID(int ID)
+    {
+        List<ItemsDataBean> items = gameResourceItemDict.Values.ToList ();
+        foreach (ItemsDataBean item in items)
+        {
+            if (item.itemID == ID)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
 }

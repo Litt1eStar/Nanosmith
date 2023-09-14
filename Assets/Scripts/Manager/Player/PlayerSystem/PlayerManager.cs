@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoSingleton<PlayerManager>
 {
     public PlayerInventory playerInventory;
     public Inventory_Controller inventoryController;
@@ -80,8 +80,9 @@ public class PlayerManager : MonoBehaviour
                 {
                     if (itemInCart.itemData != null)
                     {
+                      
                         playerItemList.Add(new PlayerItemData(itemInCart.itemData, itemInCart.stackCount + 1));
-                        Debug.Log("Type of targetItem[AddPlayerInventory] :: " + itemInCart.itemData.itemName); // In this line, type of data = CartMachineryItemController
+                        //Debug.Log("Type of targetItem[AddPlayerInventory] :: " + itemInCart.itemData.itemName + " | stack :: " + itemInCart.stackCount); // In this line, type of data = CartMachineryItemController
                     }
                     else
                     {
@@ -93,6 +94,7 @@ public class PlayerManager : MonoBehaviour
 
             if (playerItemList != null)
             {
+                playerItemList.ForEach(item => { Debug.Log("Clear | PlayerManager[AddPlayerInventoryFromItemShop] => " + item.itemsDataBean.itemName + " | " + item.stack); });
                 playerInventory.AddPlayerInventoryGenerateItem(playerItemList);
             }
             else
@@ -139,7 +141,10 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
-
+    public List<ItemsDataBean> GetALlItemList()
+    {
+        return playerInventory.AllItemsList();
+    }
     public void HandleShopComplete()
     {
         inventoryController.AddItemToPanel();

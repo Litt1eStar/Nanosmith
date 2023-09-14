@@ -11,6 +11,11 @@ public class InventoryManager : MonoBehaviour
         InitInventoryData();
     }
 
+    public ItemsDataBean GetItemDataByID(int ID)
+    {
+        return inventoryModelContainer.GetItemDataByID(ID);
+    }
+
     public List<ItemsDataBean> GetAllItemData()
     {
         return inventoryModelContainer.GetAllItems();
